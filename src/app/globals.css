@@ -5,6 +5,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --verdeescuro: #3D5300;
+  --verdeclaro: #ABBA7C;
+  --amarelo: #FFE31A;
+  --laranja: #F09319;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +19,10 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--background);
+  background: var(--verdeclaro);
+}
+
+.selected {
+  color: var(--verdeescuro);
 }
