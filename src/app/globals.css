@@ -26,3 +26,12 @@ body {
 .selected {
   color: var(--verdeescuro);
 }
+
+
+.imgs {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  max-width: 100px;
+  height: 100px;
+}
