@@ -14,7 +14,7 @@ export const NavigationBar = () => {
     }
 
     return (
-        <nav className="w-full p-3">
+        <nav className="w-full p-3 bg-verdeclaro">
             <ul className="flex justify-around">
                 <li onClick={() => setItemSelected("home")} className={`${itensClass} ${selected === "home" ? "selected" : ""}`}>Home <AiFillHome /></li>
                 <li onClick={() => setItemSelected("search")} className={`${itensClass} ${selected === "search" ? "selected" : ""}`}>Pesquisar <FaSearch /></li>

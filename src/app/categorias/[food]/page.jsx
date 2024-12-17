@@ -1,7 +1,7 @@
-const FoodCategory = ({params}) =>{
+const FoodCategory = () =>{
     return (
         <div>
-            categoria de {params.food}
+            categoria de comida especifica
         </div>
     )
 }
