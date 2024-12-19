@@ -15,6 +15,9 @@ module.exports = {
         amarelo: "var(--amarelo)",
         laranja: "var(--laranja)",
       },
+      boxShadow: {
+        sombrainterna: "var(--sombrainterna)",
+      }
     },
   },
   plugins: [],

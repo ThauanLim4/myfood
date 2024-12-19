@@ -2,15 +2,13 @@
 import { NavigationBar } from "@/components/NavigationBar";
 import { HomeInitial } from "@/components/home/Home";
 import { FoodsInitial } from "@/components/home/Foods";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 import { StoresInitial } from "@/components/home/Stores";
 
 
 export default function Home() {
 
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto">
       <section className="p-5 w-full h-full">
         <HomeInitial />
       </section>

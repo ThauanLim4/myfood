@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
       <body
-        className={inter.className}
+        className={`${inter.className} overscroll-x-none overflow-x-hidden`}
       >
-        <section className="border-b-2 border-gray-500/25">
+        <section className=" max-w-screen-lg border-b-2 mx-auto border-gray-500/25">
           <Navbar />
         </section>
 

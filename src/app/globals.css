@@ -9,6 +9,7 @@
   --verdeclaro: #ABBA7C;
   --amarelo: #FFE31A;
   --laranja: #F09319;
+  --sombrainterna: rgba(0, 0, 0, 0.06) 0 2px 4px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,5 +34,15 @@ body {
   height: 100px;
   object-fit: cover;
   max-width: 100px;
+  height: 100px;
+}
+
+.textshadow {
+  text-shadow: 0px 0px 5px var(--laranja);
+}
+
+.roundedFull {
+  border-radius: 100%;
+  width: 100px;
   height: 100px;
 }
