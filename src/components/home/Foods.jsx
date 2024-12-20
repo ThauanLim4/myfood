@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export const FoodsInitial = () => {
     const [foods, setFoods] = useState([]);
@@ -34,6 +35,7 @@ export const FoodsInitial = () => {
                             <h3 className="text-xl">{it.food}</h3> 
                             <span>R$ {it.price.toFixed(2)}</span>
                         </div>
+                        <Link href={`/item/${it.food}?itemid=${it.id}`} className="flex items-center justify-center bg-green-500 text-white p-2">Comprar</Link>
                     </div>
                 )
             })}
