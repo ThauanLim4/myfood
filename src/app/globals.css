@@ -10,6 +10,8 @@
   --amarelo: #FFE31A;
   --laranja: #F09319;
   --sombrainterna: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  --sombracontainer: rgba(0, 0, 0, 0.06) 0 0px 7px 4px;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,13 +30,12 @@ body {
   color: var(--verdeescuro);
 }
 
-
 .imgs {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  max-width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
+  object-fit: contain;
+  max-width: 125px;
+  height: 125px;
 }
 
 .textshadow {
@@ -45,4 +46,10 @@ body {
   border-radius: 100%;
   width: 100px;
   height: 100px;
+}
+
+
+.foodsContainer {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
 }

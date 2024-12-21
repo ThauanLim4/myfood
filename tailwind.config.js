@@ -17,7 +17,11 @@ module.exports = {
       },
       boxShadow: {
         sombrainterna: "var(--sombrainterna)",
-      }
+        sombra: "var(--sombracontainer)",
+      },
+      gridTemplateColumns: {
+        '2-cols': '0.5fr 1fr',
+      },
     },
   },
   plugins: [],
