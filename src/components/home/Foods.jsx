@@ -25,12 +25,12 @@ export const FoodsInitial = () => {
 
     return (
         <div>
-            <h2 className="text-xl">Mais pedidos no momento</h2>
+            <h2 className="text-xl font-semibold">Mais pedidos no momento</h2>
 
-            <div className="grid grid-cols-2 max-w-screen-lg mx-auto max-sm:grid-cols-1 max-md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 max-w-screen-lg mx-auto max-sm:grid-cols-1 max-md:grid-cols-2 gap-5 mt-10">
                 {foods.map((it, ind) => {
                     return (
-                        <div key={ind} className="grid grid-cols-2-cols max-h-40 border max-sm:border-r-0 max-sm:border-l-0 border-gray-500/25 gap-5 py-3 hover:shadow-sombra cursor-pointer">
+                        <div key={ind} className="grid grid-cols-2-cols max-h-40 max-sm:border-b-2 border-gray-500/25 gap-5 hover:shadow-sombra cursor-pointer">
                             <img className="imgs" src={it.images} alt={`foto de ${it.category}, ${it.food}`} />
                             <div className="flex flex-col justify-center gap-1">
                                 <h3 className="text-base first-letter:uppercase">{it.food}</h3>
