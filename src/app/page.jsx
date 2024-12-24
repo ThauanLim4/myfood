@@ -16,11 +16,11 @@ export default function Home() {
         <NavigationBar />
       </section>
 
-      <section className="p-5 h-full mb-20">
+      <section className="p-5 h-full mb-10">
         <StoresInitial />
       </section>
 
-      <section className="p-5 h-full mb-20">
+      <section className="p-5 h-full mb-10">
         <FoodsInitial />
       </section>
 

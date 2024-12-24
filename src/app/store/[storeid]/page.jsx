@@ -41,25 +41,25 @@ const ItemFood = () => {
                 return (
                     <div key={ind} className="">
                         <div>
-                            <img className="w-full max-h-32 object-cover" src={str.storeImages} alt="" />
+                            <img className="w-full max-h-36 object-cover" src={str.storeImages} alt="" />
                         </div>
                         <div className="p-5 border-b-2 border-gray-500/25">
                             <div className="flex gap-3">
                                 <img className="roundedFull" src={str.storeImages} alt="" />
                                 <div className="flex flex-col gap-1">
-                                    <h2 className="text-xl">{str.storeName} <span className="bg-gray-500/25 text-xs">{str.type}
-                                    </span></h2>
+                                    <h2 className="text-xl font-semibold flex gap-3">{str.storeName}
+                                        {hour >= str.openIN && hour <= str.closeIN
+                                            ? <span className="flex items-center gap-2"> <FaCircle className="text-green-500 text-xs" /></span>
+                                            : <span className="flex items-center gap-2"><FaCircle className="text-red-500 text-xs" /></span>}
+                                        <span className="bg-gray-500/25 text-xs">
+                                        </span></h2>
                                     <span className="flex items-center gap-1">
                                         <FaStar className="text-yellow-300" />{str.stars} avaliação
                                     </span>
-                                    <h3>valor mínimo R$ {str.freight.toFixed(2)} <br />
+                                    
+                                    <h3>{str.freight >= 1 ? <>valor mínimo <strong>R$ {str.freight.toFixed(2)}</strong></> : "sem valor mínimo"} <br />
                                     </h3>
                                 </div>
-                            </div>
-                            <div className="mx-auto">
-                                {hour >= str.openIN && hour <= str.closeIN 
-                                ? <span className="flex items-center gap-2">aberto <FaCircle className="text-green-500 text-xs" /></span> 
-                                : <span className="flex items-center gap-2">fechado <FaCircle className="text-red-500 text-xs" /></span>}
                             </div>
                         </div>
                     </div>
