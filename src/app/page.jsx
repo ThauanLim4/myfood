@@ -1,6 +1,6 @@
 "use client";
 import { HomeInitial } from "@/components/home/Home";
-import { SearchInitial } from "@/components/search/search";
+import { SearchInitial } from "@/components/search/Search";
 import { User } from "@/components/user/User";
 import { useEffect, useState } from "react";
 import { AiFillHome } from "react-icons/ai";
