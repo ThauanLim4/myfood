@@ -7,20 +7,9 @@ import { AiFillHome } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 
-
-
 export default function Home() {
   const itensClass = "flex flex-col-reverse justify-center items-center cursor-pointer";
-  const [selected, setSelected] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("selected") || "home";
-    }
-    return "home";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("selected", selected)
-  }, [selected])
+  const [selected, setSelected] = useState("home");
 
   const setItemSelected = (item) => {
     setSelected(item)
