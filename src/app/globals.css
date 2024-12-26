@@ -36,6 +36,7 @@ body {
   object-fit: contain;
   max-width: 125px;
   height: 125px;
+
 }
 
 .textshadow {
@@ -46,6 +47,12 @@ body {
   border-radius: 100%;
   width: 100px;
   height: 100px;
+}
+
+.roundedFullMedium {
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
 }
 
 .roundedFullMini {

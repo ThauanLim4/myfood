@@ -27,13 +27,13 @@ export const StoresInitial = () => {
 
 
     return (
-        <div>
+        <div className="mt-10">
             <h2 className="text-xl font-semibold">Lojas disponiveis</h2>
 
             <div className="mx-auto grid max-md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
                 {Stores.map((it, ind) => {
                     return (
-                        <div key={ind} className="border border-gray-500/25 p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-72 h-32 max-w-72 max-h-36">
+                        <div key={ind} className="border border-gray-500/25 p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-80 h-32 max-w-80 max-h-36">
                             <Link href={`/store/${it.storeName.toLowerCase()}?storeid=${it.id}`} className="flex gap-3">
                                 <img className="object-cover roundedFull" src={it.storeImages ? it.storeImages : "https://res.cloudinary.com/dhl67mauv/image/upload/v1734696916/Closed_Stores-bro_iqr7zd.svg"} />
                                 <div className="flex flex-col gap-1">

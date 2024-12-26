@@ -1,30 +1,54 @@
 "use client";
-import { NavigationBar } from "@/components/NavigationBar";
 import { HomeInitial } from "@/components/home/Home";
-import { FoodsInitial } from "@/components/home/Foods";
-import { StoresInitial } from "@/components/home/Stores";
+import { SearchInitial } from "@/components/search/search";
+import { User } from "@/components/user/User";
+import { useEffect, useState } from "react";
+import { AiFillHome } from "react-icons/ai";
+import { FaSearch } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+
 
 
 export default function Home() {
+  const itensClass = "flex flex-col-reverse justify-center items-center cursor-pointer";
+  const [selected, setSelected] = useState(() => {
+    return localStorage.getItem("selected") || "home"
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selected", selected)
+  }, [selected])
+
+  const setItemSelected = (item) => {
+    setSelected(item)
+  }
 
   return (
     <div className="max-w-screen-lg mx-auto">
-      <section className="p-5 w-full h-full">
+      {selected === "home" && <section className="p-5 w-full h-full">
         <HomeInitial />
-      </section>
-      <section className="max-sm:flex hidden fixed bottom-0 w-full right-0 left-0 border-t-2 border-gray-500/25">
-        <NavigationBar />
-      </section>
-
-      <section className="p-5 h-full mb-10">
-        <StoresInitial />
-      </section>
-
-      <section className="p-5 h-full mb-10">
-        <FoodsInitial />
-      </section>
+      </section>}
 
 
+      {selected === "search" && <section className="p-5 w-full h-full">
+        <SearchInitial />
+      </section>}
+
+      {selected === "perfil" && <section className="p-5 w-full h-full">
+        <User />
+      </section>}
+
+
+
+      <section className="hidden max-sm:block">
+        <nav className="w-full p-3 bg-verdeclaro fixed bottom-0">
+          <ul className="flex justify-around">
+            <li onClick={() => setItemSelected("home")} className={`${itensClass} ${selected === "home" ? "selected" : ""}`}>Home <AiFillHome /></li>
+            <li onClick={() => setItemSelected("search")} className={`${itensClass} ${selected === "search" ? "selected" : ""}`}>Pesquisar <FaSearch /></li>
+            <li onClick={() => setItemSelected("perfil")} className={`${itensClass} ${selected === "perfil" ? "selected" : ""}`}>Perfil <FaUser /></li>
+          </ul>
+        </nav>
+      </section>
     </div>
   )
 }
