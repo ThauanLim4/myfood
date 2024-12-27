@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/navbar/navbar";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} overscroll-x-none overflow-x-hidden`}
       >
-        <section className=" max-w-screen-lg border-b-2 mx-auto border-gray-500/25">
+        <section className=" max-w-screen-xl border-b-2 mx-auto border-gray-500/25">
           <Navbar />
         </section>
 

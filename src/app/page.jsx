@@ -9,7 +9,14 @@ import { FaUser } from "react-icons/fa";
 
 export default function Home() {
   const itensClass = "flex flex-col-reverse justify-center items-center cursor-pointer";
-  const [selected, setSelected] = useState("home");
+  const [selected, setSelected] = useState(() => {
+    if (typeof window === "undefined") return "perfil";
+    return localStorage.getItem("selected") || "perfil";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selected", selected);
+  }, [selected]);
 
   const setItemSelected = (item) => {
     setSelected(item)

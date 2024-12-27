@@ -24,7 +24,7 @@ export const FoodsInitial = () => {
 
 
     return (
-        <div className="mt-10">
+        <div className="my-10">
             <h2 className="text-xl font-semibold">Mais pedidos no momento</h2>
 
             <div className="grid grid-cols-2 max-w-screen-lg mx-auto max-sm:grid-cols-1 max-md:grid-cols-2 gap-5 mt-10">
@@ -35,7 +35,7 @@ export const FoodsInitial = () => {
                             <div className="flex flex-col justify-center gap-1">
                                 <h3 className="text-base first-letter:uppercase">{it.food}</h3>
                                 <span>R$ {it.price.toFixed(2)}</span>
-                                <Link href={`/item/${it.food}?itemid=${it.id}`} className="flex items-center justify-center text-black p-2 w-36 h-10 border border-verdeescuro hover:bg-verdeescuro hover:text-verdeclaro">Comprar</Link>
+                                <Link href={`/item/${it.food}?itemid=${it.id}`} className="flex items-center justify-center p-2 w-36 h-10 btnDefault1">Comprar</Link>
                             </div>
                         </div>
                     )

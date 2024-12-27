@@ -84,10 +84,10 @@ const ItemFood = () => {
                             </div>
 
                         </div>
-                        <div className="flex justify-center border-t-2 border-gray-500/25 pt-3 w-full max-h-28">
-                            <button className="bg-verdeescuro text-white px-3 py-1 border-r-2 border-gray-500/30"><IoIosAdd /></button>
-                            <button className="bg-verdeescuro text-verdeclaro px-3 py-1 w-full">Adicionar ao carrinho</button>
-                            <button className="bg-verdeescuro text-white px-3 py-1 border-l-2 border-gray-500/30"><IoIosRemove /></button>
+                        <div className="flex justify-center pt-3 max-h-28 fixed bottom-5 left-5 right-5 gap-5">
+                            <button className="bg-verdeescuro text-white px-3 py-1 border-r-2 border-gray-500/30 btnDefault1"><IoIosAdd /></button>
+                            <button className="bg-verdeescuro text-verdeclaro px-3 py-1 w-full btnDefault1">Adicionar ao carrinho</button>
+                            <button className="bg-verdeescuro text-white px-3 py-1 border-l-2 border-gray-500/30 btnDefault1"><IoIosRemove /></button>
                         </div>
                     </>
                 )

@@ -22,6 +22,9 @@ module.exports = {
       gridTemplateColumns: {
         '2-cols': '0.5fr 1fr',
       },
+      borderWidth: {
+        3: "3px",
+      },
     },
   },
   plugins: [],
