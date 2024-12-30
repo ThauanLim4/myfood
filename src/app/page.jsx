@@ -10,8 +10,8 @@ import { FaUser } from "react-icons/fa";
 export default function Home() {
   const itensClass = "flex flex-col-reverse justify-center items-center cursor-pointer";
   const [selected, setSelected] = useState(() => {
-    if (typeof window === "undefined") return "perfil";
-    return localStorage.getItem("selected") || "perfil";
+    if (typeof window === "undefined") return "home";
+    return localStorage.getItem("selected") || "home";
   });
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Home() {
         <SearchInitial />
       </section>}
 
-      {selected === "perfil" && <section className="p-5 w-full h-full">
+      {selected === "user" && <section className="p-5 w-full h-full">
         <User />
       </section>}
 
@@ -44,7 +44,7 @@ export default function Home() {
           <ul className="flex justify-around">
             <li onClick={() => setItemSelected("home")} className={`${itensClass} ${selected === "home" ? "selected" : ""}`}>Home <AiFillHome /></li>
             <li onClick={() => setItemSelected("search")} className={`${itensClass} ${selected === "search" ? "selected" : ""}`}>Pesquisar <FaSearch /></li>
-            <li onClick={() => setItemSelected("perfil")} className={`${itensClass} ${selected === "perfil" ? "selected" : ""}`}>Perfil <FaUser /></li>
+            <li onClick={() => setItemSelected("user")} className={`${itensClass} ${selected === "user" ? "selected" : ""}`}>Perfil <FaUser /></li>
           </ul>
         </nav>
       </section>

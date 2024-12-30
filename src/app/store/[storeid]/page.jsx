@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import '@/app/globals.css';
 import { FaStar, FaCircle } from "react-icons/fa";
-import { StoreItems } from "@/components/foodFromStores/FoodStore";
+import { StoreItems } from "@/components/menuFromStore/menuStore";
 
 
 const ItemFood = () => {
@@ -10,25 +10,21 @@ const ItemFood = () => {
     const [store, setStore] = useState([]);
     const nowDate = new Date();
     let hour = nowDate.getHours().toFixed(2);
-    console.log(hour)
 
     useEffect(() => {
-        const currentUrl = window.location.href.split('storeid=').pop()
-        const decodedUrl = decodeURI(currentUrl);
-        setUrl(Number(decodedUrl))
-
+        const currentUrl = window.location.href.split('storeid=').pop().split('?')[0].toLowerCase();
+        setUrl(currentUrl);
         const fetchstore = async () => {
-
             try {
                 const response = await fetch(`/api/mysql/stores`);
                 if (!response.ok) {
                     console.log('erro ao buscar o banco de dados')
                 }
                 const result = await response.json();
-                const resultFilted = await result.filter(i => i.id === url)
+                const resultFilted = await result.filter(store => store.storeIndentification === url)
                 setStore(resultFilted);
             } catch (erro) {
-
+                console.log("erro ao buscar o banco de dados");
             }
 
         }

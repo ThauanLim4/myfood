@@ -59,7 +59,7 @@ const ItemFood = () => {
         <div className="">
             {item.map((item, ind) => {
                 return (
-                    <>
+                    <span key={ind}>
                         <div key={ind} className="flex flex-col gap-3 p-5">
                             <div className="mx-auto flex flex-col items-center w-full max-h-40 ">
                                 <img className="w-full max-h-40 object-contain" src={item.images} alt="" />
@@ -85,11 +85,9 @@ const ItemFood = () => {
 
                         </div>
                         <div className="flex justify-center pt-3 max-h-28 fixed bottom-5 left-5 right-5 gap-5">
-                            <button className="bg-verdeescuro text-white px-3 py-1 border-r-2 border-gray-500/30 btnDefault1"><IoIosAdd /></button>
                             <button className="bg-verdeescuro text-verdeclaro px-3 py-1 w-full btnDefault1">Adicionar ao carrinho</button>
-                            <button className="bg-verdeescuro text-white px-3 py-1 border-l-2 border-gray-500/30 btnDefault1"><IoIosRemove /></button>
                         </div>
-                    </>
+                    </span>
                 )
             })}
         </div>
