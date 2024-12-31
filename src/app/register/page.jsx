@@ -1,39 +1,66 @@
 "use client";
-import { useState } from "react"
-const Register = () =>{
+import { useState } from "react";
+import { NextResponse } from "next/server";
+const Register = () => {
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [users, setUsers] = useState([]);
 
-    const registerUser = async (e) => {
-        e.preventDefault();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-        const response = await fetch('/api/mysql/register', {
-            method: "POST",
-            body: JSON.stringify({
-                name,
-                email,
-                password
-            })
-        });
+    const [mensage, setMensage] = useState("");
+
+    const addUser = async (eve) => {
+        try {
+            const response = await fetch('/api/mysql/user', {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password
+                })
+
+
+            });
+            const data = await response.json();
+            setUsers([...users, data]);
+
+            console.log(data)
+
+            if (NextResponse.status(201)) {
+                window.location.href = "/";
+            }
+
+        } catch (erro) {
+
+        }
     }
 
     return (
         <div className="p-5">
-            <h1>Register</h1>
-            <form action="" className="flex flex-col gap-5" method="post">
-                <label htmlFor="name">Nome</label>
-                <input type="text" value={name} onChange={e => setName(e.target.value)} />
+            <div>
+                <h1>Users</h1>
 
-                <label htmlFor="email">Email</label>
-                <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+                <div>
 
-                <label htmlFor="password">Senha</label>
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <label htmlFor="user_name">Nome</label>
+                    <input type="text" name="user_name" id="user_name" value={name} onChange={e => setName(e.target.value)} />
 
-                <button type="submit" onClick={registerUser}>Register</button>
-            </form>
+                    <label htmlFor="user_email">Email</label>
+                    <input type="text" name="user_email" id="user_email" value={email} onChange={e => setEmail(e.target.value)} />
+
+                    <label htmlFor="user_password">Senha</label>
+                    <input type="text" name="user_password" id="user_password" value={password} onChange={e => setPassword(e.target.value)} />
+
+                    <button onClick={addUser}>Criar usuário</button>
+                </div>
+
+                {mensage}
+            </div>
         </div>
     )
 }
