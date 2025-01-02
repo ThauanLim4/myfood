@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { NextResponse } from "next/server";
 const Register = () => {
 
     const [users, setUsers] = useState([]);
@@ -31,8 +30,11 @@ const Register = () => {
 
             console.log(data)
 
-            if (NextResponse.status(201)) {
-                window.location.href = "/";
+            if (response.ok) {
+                console.log("usuário criado com sucesso");
+                window.location.href = "/login";
+            } else {
+                console.log("Erro ao criar usuário");
             }
 
         } catch (erro) {
@@ -45,7 +47,7 @@ const Register = () => {
             <div>
                 <h1>Users</h1>
 
-                <div>
+                <div className="flex flex-col gap-5">
 
                     <label htmlFor="user_name">Nome</label>
                     <input type="text" name="user_name" id="user_name" value={name} onChange={e => setName(e.target.value)} />

@@ -8,11 +8,10 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [infosLogin, setInfosLogin] = useState([]);
-
-
     const [loginIsOk, setLoginIsOk] = useState(true);
 
-    useEffect(() => {
+
+    const verifyLogin = (eve) => {
         const login = async () => {
             try {
                 const response = await fetch('/api/mysql/login');
@@ -20,27 +19,26 @@ const LoginPage = () => {
                     console.log('erro ao buscar o banco de dados')
                 }
                 const result = await response.json();
-                const resultFilted = await result.filter(i => i.email === email && i.password === password);
-                // if (resultFilted.length == 0) {
-                //     return console.log("não existe usuario com esse email e senha")
-                // }
+                const resultFilted = await result.filter(i => i.user_email === email && i.user_password === password);
+                if (resultFilted.length == 0) {
+                    return console.log("não existe usuario com esse email e senha")
+                }
                 setInfosLogin(resultFilted);
-                console.log(resultFilted)
+                console.log("login feito com sucesso", resultFilted);
+
+                const tokenUser = resultFilted[0].authentication_key;
+
+                if (resultFilted.length > 0 && tokenUser) {
+                    localStorage.setItem("token", tokenUser);
+                    window.location.href = '/';
+                }
             } catch (erro) {
                 console.log("erro ao conectar ao banco de dados", erro);
             }
         }
-        login()
-    }, [])
 
-    const verifyLogin = (eve) => {
+        login()
         eve.preventDefault();
-        console.log(infosLogin)
-        if(infosLogin.length == 0) {
-            setLoginIsOk(false);
-        } else {
-            window.location.href = '/store';
-        }
     }
 
     return (
@@ -55,10 +53,10 @@ const LoginPage = () => {
                 <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit" onClick={verifyLogin}>Login</button>
 
-                {!loginIsOk ? <p className="text-red-500">login falhou</p> : "" }
+                {!loginIsOk ? <p className="text-red-500">login falhou</p> : ""}
             </form>
             <hr />
-            <div>   
+            <div>
                 <Link href="/register">Cria conta</Link>
             </div>
             <h1 className="text-2xl">Login</h1>
