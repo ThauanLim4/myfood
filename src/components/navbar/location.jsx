@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SlArrowDown } from "react-icons/sl";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaSearchLocation, FaLocationCrosshairs } from "react-icons/fa";
@@ -8,9 +8,14 @@ import "@/app/globals.css";
 export const Location = () => {
     const [modalLocation, setModalLocation] = useState(false);
     const [areaLocation, setAreaLocation] = useState("");
+    const [userToken, setUserToken] = useState("");
 
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
+
+    useEffect(() => {
+        setUserToken(localStorage.getItem("token"));
+    }, [])
 
     const searchLocalization = async () => {
         if ("geolocation" in navigator) {
@@ -25,15 +30,38 @@ export const Location = () => {
         try {
             const response = await fetch(urlMap);
             if (!response.ok) {
-                console.log('erro ao buscar a localização');
+                return console.log('erro ao buscar a localização');
             }
             const result = await response.json();
+            console.log(result)
             const resultFilted = result.address.road + " - " + result.address.city_district;
             setAreaLocation(resultFilted);
+            saveLocation();
+
         } catch (erro) {
             console.log("erro ao obter o endereço", erro)
         }
     }
+
+    const saveLocation = async () => {
+        try {
+            const response = await fetch("/api/mysql/users", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    address: areaLocation,
+                    authentication_key: userToken
+                })
+            });
+            console.log(response)
+        } catch (erro) {
+            console.log("erro ao salvar o endereço", erro)
+        }
+    }
+
+
     return (
         <>
             <button onClick={e => setModalLocation(!modalLocation)} className="flex items-center gap-2">
