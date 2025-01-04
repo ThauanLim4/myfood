@@ -16,8 +16,9 @@ export async function GET(request) {
 export async function POST(request) {
     try {
         const { body } = request;
+        const {user_id, product_name, product_id, store_id, quanty, unit_price, total_price} = body
         const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
-        const [rows] = await conection.execute(`INSERT INTO cart (product_name, product_id, store_id, quantity, unit_price, total_price, add_at) VALUES ()`);
+        const [rows] = await conection.execute(`INSERT INTO cart (user_id, product_name, product_id, store_id, quantity, unit_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?)`[user_id, product_name, product_id, store_id, quanty, unit_price, total_price]);
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro);
     }

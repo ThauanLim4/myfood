@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { fetchAllFoods } from "@/app/api/utils/utilitys";
 import Link from "next/link";
 
 export const FoodsInitial = () => {
@@ -9,15 +10,9 @@ export const FoodsInitial = () => {
     useEffect(() => {
         const fetchFoods = async () => {
             try {
-                const response = await fetch('/api/mysql/foods');
-                if (!response.ok) {
-                    console.log('erro ao buscar o banco de dados')
-                }
-                const result = await response.json();
+                const result = await fetchAllFoods();
                 setFoods(result)
-            } catch (erro) {
-
-            }
+            } catch (erro) {}
         }
         fetchFoods();
     }, [])
