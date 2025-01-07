@@ -9,9 +9,9 @@ import Image from "next/image";
 const Favorites = () => {
 
     const [itensFav, setItensFav] = useState([]);
-    const token = localStorage.getItem("token");
-
+    
     useEffect(() => {
+        const token = localStorage.getItem("token");
         const fetchFavs = async () => {
             try {
                 const result = await fetchAllFavorites();
