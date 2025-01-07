@@ -1,12 +1,14 @@
+"use client";
 import "@/app/globals.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const CartItemComponent = ({ variableName }) => {
     const [total, setTotal] = useState(0);
 
-    useState(() => {
+    useEffect(() => {
         const totalPrice = variableName.reduce((acc, item) => acc + item.unit_price, 0);
         setTotal(totalPrice);
+        console.log(totalPrice);
     }, [variableName]);
 
     return (

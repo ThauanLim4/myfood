@@ -2,12 +2,14 @@
 import { useEffect, useState } from "react";
 import '@/app/globals.css';
 import { FaStar, FaCircle } from "react-icons/fa";
-import { StoreItems } from "@/components/menuFromStore/menuStore";
-
+import { fetchAllStores, fetchAllFoods } from "@/app/api/utils/utilitys";
+import { FoodComponent } from "@/components/ComponentsDefault/foodsComponent";
+import HeaderDefault from "@/components/ComponentsDefault/header";
 
 const ItemFood = () => {
     const [url, setUrl] = useState('');
     const [store, setStore] = useState([]);
+    const [menu, setMenu] = useState([])
     const nowDate = new Date();
     let hour = nowDate.getHours().toFixed(2);
 
@@ -16,13 +18,19 @@ const ItemFood = () => {
         setUrl(currentUrl);
         const fetchstore = async () => {
             try {
-                const response = await fetch(`/api/mysql/stores`);
-                if (!response.ok) {
-                    console.log('erro ao buscar o banco de dados')
-                }
-                const result = await response.json();
+                const result = await fetchAllStores();
                 const resultFilted = await result.filter(store => store.storeIndentification === url)
+                console.log(resultFilted)
                 setStore(resultFilted);
+
+                try {
+                    const foodsResult = await fetchAllFoods();
+                    const foodsFilted = await foodsResult.filter(food => food.storeIndentification === resultFilted[0].storeIndentification);
+                    setMenu(foodsFilted);
+                    console.log(foodsFilted)
+                } catch (erro) {
+
+                }
             } catch (erro) {
                 console.log("erro ao buscar o banco de dados");
             }
@@ -33,6 +41,7 @@ const ItemFood = () => {
 
     return (
         <div className="max-w-screen-lg mx-auto">
+            <HeaderDefault nameLocation={store.length > 0 ? store[0].storeName : ''}/>
             {store.map((str, ind) => {
                 return (
                     <div key={ind} className="">
@@ -62,7 +71,10 @@ const ItemFood = () => {
                 )
             })}
             <div className="p-5">
-                <StoreItems />
+                {menu ? <div>
+                    <FoodComponent variableName={menu}/> 
+                </div>
+                : "nada encontrado"}
             </div>
         </div>
     )

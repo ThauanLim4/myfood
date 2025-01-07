@@ -11,7 +11,7 @@ export const FoodComponent = ({variableName}) =>{
                         <img className="imgs" src={it.images} alt={`foto de ${it.category}, ${it.food}`} />
                         <div className="flex flex-col justify-center gap-1">
                             <h3 className="text-base first-letter:uppercase">{it.food}</h3>
-                            <span>R$ {it.price && it.price.toFixed(2)}</span>
+                            <span>R$ {it.price && it.price.toFixed(2).replace(".", ",")}</span>
                             <Link href={`/item/${it.food}?itemid=${it.id}`} className="flex items-center justify-center p-2 w-36 h-10 btnDefault1">Comprar</Link>
                         </div>
                     </div>

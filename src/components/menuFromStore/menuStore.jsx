@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { SlArrowDown } from "react-icons/sl";
-import {jwt} from "jsonwebtoken";
 
 export const StoreItems = () => {
     const [url, setUrl] = useState('');
