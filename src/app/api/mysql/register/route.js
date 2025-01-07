@@ -1,4 +1,5 @@
 import { json, response } from "express";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
@@ -15,11 +16,8 @@ export async function POST(request) {
 
         await conection.end();
 
-        return {
-            mensage: "usuário cadastrado com sucesso",
-            status: 200,
-            body: rows
-        }
+               return NextResponse.json({ message: "Usuário criado com sucesso", success: true }, { status: 201 })
+       
 
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro);

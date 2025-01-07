@@ -8,7 +8,17 @@ const ItemFood = () => {
     const [url, setUrl] = useState('');
     const [item, setItem] = useState([]);
     const [store, setStore] = useState([]);
-    const [userInfos, setUserInfos] = useState([])
+    const [userInfos, setUserInfos] = useState([]);
+
+    // informações sobre o usuário para ser adicionados a tabela do carrinho
+
+    // const [user_id, setUser_id] = useState(0);
+    // const [product_name, setProduct_name] = useState("");
+    // const [product_id, setProduct_id] = useState(0);
+    // const [store_id, setStore_id] = useState(0);
+    // const [quanty, setQuanty] = useState(1);
+    // const [unit_price, setUnit_price]= useState(0);
+    // const [total_price, setTotal_price] = useState(0);
 
     useEffect(() => {
         const currentUrl = window.location.href.split('itemid=').pop()
@@ -49,36 +59,32 @@ const ItemFood = () => {
                 console.log('erro ao buscar o banco de dados');
             }
         }
+
         fetchitem();
     }, [url])
 
-    if (item.length >= 1 && store.length >= 1) {
-        console.log("nome do produto: ", item[0].food);
-        console.log("id do produto: ", item[0].id);
-        console.log("id da loja: ", store[0].id);
-        if (userInfos) {
-            console.log("id do usuário: ", userInfos.id);
-        }
-    }
-
-
     const addProductToCart = async () => {
-        await fetch("/api/mysql/cart", {
+        const response = await fetch("/api/mysql/cart", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
             },
             body: JSON.stringify({
-                user_id,
-                product_name,
-                product_id,
-                store_id,
-                quanty,
-                unit_price,
-                total_price
+                user_id: userInfos.id,
+                product_name: item[0].food,
+                product_id: item[0].id,
+                store_id: store[0].id,
+                quanty: 1,
+                unit_price: item[0].price,
+                total_price: item[0].price * 1,
             })
-        })
+        });
+        if(response.status === 201){
+            window.location.href = `/store/${store[0].storeName.toLowerCase()}?storeid=${store[0].storeIndentification}`
+        }
     }
+
+
 
     return (
         <div className="">

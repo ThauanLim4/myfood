@@ -21,7 +21,7 @@ export const Location = () => {
             try {
                 const response = await fetch("/api/mysql/users");
                 const result = await response.json();
-                const resultFilted = result.rows.filter((e) => e.authentication_key === token);
+                const resultFilted = result.filter((e) => e.authentication_key === token);
                 if (resultFilted.lenght < 1) {
                     console.log("o usuário não possuíuma localização");
                 }

@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <div className="max-w-screen-lg mx-auto">
-      {selected === "home" && <section className="p-5 w-full h-full">
+      {selected === "home" && <section className="w-full h-full">
         <HomeInitial />
       </section>}
 

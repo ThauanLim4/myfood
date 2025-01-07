@@ -1,14 +1,16 @@
 import mysql from "mysql2/promise";
+import { NextResponse } from "next/server";
 
-export async function GET(request) {
+export async function GET() {
     try {
-        const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
+        const connection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
 
-        const [rows] = await conection.execute("SELECT * FROM user");
-        await conection.end();
-        return Response.json({rows});
-    } catch (erro) {
-        console.log("erro conectar ao banco de dados", erro)
+        const [rows] = await connection.execute("SELECT * FROM user");
+        await connection.end();
+        return NextResponse.json(rows);
+    } catch (error) {
+        console.log("Error connecting to the database", error);
+        return NextResponse.json({ error: "Error connecting to the database" }, { status: 500 });
     }
 }
 

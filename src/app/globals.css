@@ -80,6 +80,22 @@ body {
   cursor: pointer;
 }
 
+.btnDefaultCart {
+  background: var(--verdeescuro);
+  color: whitesmoke;
+  font-family: inherit;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em var(--verdeescuro);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
 .btnDefault1-desabled {
   background: gray;
   color: whitesmoke;
