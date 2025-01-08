@@ -1,37 +1,14 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import "@/app/globals.css";
-
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 
-export const StoresInitial = () => {
-    const [Stores, setStores] = useState([]);
-
-    useEffect(() => {
-        const fetchStores = async () => {
-            try {
-                const response = await fetch('/api/mysql/stores');
-                if (!response.ok) {
-                    console.log('erro ao buscar o banco de dados')
-                }
-                const result = await response.json();
-                setStores(result)
-            } catch (erro) {
-
-            }
-        }
-        fetchStores();
-    }, [])
-
-
+export const StoresInitial = ({stores}) => {
     return (
         <div className="mt-10">
             <h2 className="text-xl font-semibold">Lojas disponiveis</h2>
 
             <div className="mx-auto grid max-md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-                {Stores.map((it, ind) => {
+                {stores.map((it, ind) => {
                     return (
                         <div key={ind} className="border border-gray-500/25 p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-80 h-32 max-w-80 max-h-36">
                             <Link href={`/store/${it.storeName.toLowerCase()}?storeid=${it.storeIndentification}`} className="flex gap-3">

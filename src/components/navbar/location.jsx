@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { SlArrowDown } from "react-icons/sl";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaSearchLocation, FaLocationCrosshairs } from "react-icons/fa";
+
+import { fetchAllUsers } from "@/app/api/utils/utilitys";
 import "@/app/globals.css";
 
 export const Location = () => {
@@ -15,22 +17,27 @@ export const Location = () => {
     const [longitude, setLongitude] = useState(0);
 
     useEffect(() => {
+        setUserLocation(() => JSON.parse(localStorage.getItem("location")) || "")
         const token = localStorage.getItem("token");
-        setUserToken(token);
-        const fetchLocation = async () => {
-            try {
-                const response = await fetch("/api/mysql/users");
-                const result = await response.json();
-                const resultFilted = result.filter((e) => e.authentication_key === token);
-                if (resultFilted.lenght < 1) {
-                    console.log("o usuário não possuíuma localização");
+        if (userLocation.length === 0) {
+
+            setUserToken(token);
+            const fetchLocation = async () => {
+                try {
+                    const response = await fetchAllUsers();
+                    const resultFilted = response.find((e) => e.authentication_key === token);
+                    if (resultFilted.lenght < 1) {
+                        console.log("o usuário não possuíuma localização");
+                    }
+                    const loc = resultFilted.address;
+                    setUserLocation(loc)
+                    localStorage.setItem("location", JSON.stringify(loc))
+                } catch (erro) {
+                    console.log("erro ao buscar endereço do usuário", erro);
                 }
-                setUserLocation(resultFilted[0].address)
-            } catch (erro) {
-                console.log("erro ao buscar endereço do usuário", erro);
-            }
-        };
-        fetchLocation();
+            };
+            fetchLocation();
+        }
     }, []);
 
 
@@ -106,9 +113,9 @@ export const Location = () => {
                         <div className="flex flex-col gap-3 mx-auto text-black border-black border-3 rounded-lg p-3 w-full max-w-2xl">
                             <h3 >R.{userLocation} </h3>
                         </div>}
-                    {userLocation 
-                    ? <button onClick={searchLocalization} className="flex items-center justify-center gap-3 btnDefault1-desabled fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Localização encontrada <FaSearchLocation /></button>
-                    : <button onClick={searchLocalization} className="flex items-center justify-center gap-3 btnDefault1 fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Procurar localização <FaSearchLocation /></button>}
+                    {userLocation
+                        ? <button onClick={searchLocalization} className="flex items-center justify-center gap-3 btnDefault1-desabled fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Localização encontrada <FaSearchLocation /></button>
+                        : <button onClick={searchLocalization} className="flex items-center justify-center gap-3 btnDefault1 fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Procurar localização <FaSearchLocation /></button>}
                 </div>
             }
         </>

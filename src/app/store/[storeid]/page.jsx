@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import '@/app/globals.css';
 import { FaStar, FaCircle } from "react-icons/fa";
 import { fetchAllStores, fetchAllFoods } from "@/app/api/utils/utilitys";
-import { FoodComponent } from "@/components/ComponentsDefault/foodsComponent";
+import { FoodComponentInstore } from "@/components/ComponentsDefault/foodsComponent";
 import HeaderDefault from "@/components/ComponentsDefault/header";
 
 const ItemFood = () => {
@@ -20,8 +20,10 @@ const ItemFood = () => {
             try {
                 const result = await fetchAllStores();
                 const resultFilted = await result.filter(store => store.storeIndentification === url)
-                console.log(resultFilted)
-                setStore(resultFilted);
+                if(resultFilted.length >= 1){
+                    console.log(resultFilted)
+                    setStore(resultFilted);
+                }
 
                 try {
                     const foodsResult = await fetchAllFoods();
@@ -71,8 +73,11 @@ const ItemFood = () => {
                 )
             })}
             <div className="p-5">
-                {menu ? <div>
-                    <FoodComponent variableName={menu}/> 
+                {menu ? 
+                <div>
+                    {store.length !== 0 ? 
+                    <h3>Menu da <span className="text-verdeescuro font-semibold">{store[0].storeName}</span></h3> : ""}
+                    <FoodComponentInstore variableName={menu}/> 
                 </div>
                 : "nada encontrado"}
             </div>

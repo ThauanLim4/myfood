@@ -1,9 +1,12 @@
+"use client";
 import { CategoriesInitial } from "./Categories";
 import { StoresInitial } from "./Stores";
 import { FoodsInitial } from "./Foods";
 import { Navbar } from "@/components/navbar/navbar";
+import { useData } from "@/context/foodsAndStoresContext";
 
 export const HomeInitial = () => {
+    const { foods, stores } = useData();
 
     return (
         <>
@@ -15,10 +18,10 @@ export const HomeInitial = () => {
                     <CategoriesInitial />
                 </div>
                 <div>
-                    <StoresInitial />
+                    <StoresInitial stores={stores} />
                 </div>
                 <div>
-                    <FoodsInitial />
+                    <FoodsInitial foods={foods} />
                 </div>
             </div>
         </>

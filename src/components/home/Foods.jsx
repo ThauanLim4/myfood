@@ -1,22 +1,8 @@
 "use client";
-
-import { useState, useEffect } from "react";
-import { fetchAllFoods } from "@/app/api/utils/utilitys";
 import Link from "next/link";
+import { useDataProvider } from "./Home";
 
-export const FoodsInitial = () => {
-    const [foods, setFoods] = useState([]);
-
-    useEffect(() => {
-        const fetchFoods = async () => {
-            try {
-                const result = await fetchAllFoods();
-                setFoods(result)
-            } catch (erro) {}
-        }
-        fetchFoods();
-    }, [])
-
+export const FoodsInitial = ({foods}) => {
 
     return (
         <div className="mt-10 mb-16">
