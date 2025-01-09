@@ -18,17 +18,17 @@ export async function POST(request) {
     try {
         const body = await request.json();
         const { user_id, product_name, product_image, product_id, store_id, quanty, unit_price, total_price } = body;
-
-        if (!user_id && !product_name && !product_image && !product_id && !store_id && !quanty && !unit_price && !total_price) {
+        if (!user_id || !product_name || !product_image || !product_id || !store_id || !quanty || !unit_price || !total_price) {
             return new Response(JSON.stringify({ erro: "campos inválidos" }))
         }
+        const connection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
+        const [rows] = await connection.execute(`INSERT INTO cart (user_id, product_name, product_image, product_id, store_id, quanty, unit_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [user_id, product_name, product_image, product_id, store_id, quanty, unit_price, total_price]);
 
-        const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
-        const [rows] = await conection.execute(`INSERT INTO cart (user_id, product_name, product_image product_id, store_id, quanty, unit_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [user_id, product_name, product_image, product_id, store_id, quanty, unit_price, total_price]);
-
+        await connection.end();
         return NextResponse.json({ message: "adicionado ao carrinho com sucesso", success: true, rows }, { status: 201 })
 
     } catch (erro) {
-        console.log("erro conectar ao banco de dados", erro);
+        console.error("Error inserting into the database", erro);
+        return NextResponse.json({ message: "não foi adicionado ao carrinho", success: false }, { status: 400 })
     }
 }

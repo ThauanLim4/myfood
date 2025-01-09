@@ -1,5 +1,5 @@
 "use client";
-import HeaderDefault from "@/components/ComponentsDefault/header";
+import {HeaderDefault} from "@/components/ComponentsDefault/header";
 import { useEffect, useState } from "react";
 import { fetchAllFavorites } from "../api/utils/utilitys";
 import { StoreComponent } from "@/components/ComponentsDefault/storeComponents";

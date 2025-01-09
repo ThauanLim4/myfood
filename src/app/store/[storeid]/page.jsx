@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import '@/app/globals.css';
 import { FaStar, FaCircle } from "react-icons/fa";
 import { fetchAllStores, fetchAllFoods } from "@/app/api/utils/utilitys";
-import { FoodComponentInstore } from "@/components/ComponentsDefault/foodsComponent";
-import HeaderDefault from "@/components/ComponentsDefault/header";
+import { FoodComponentInStore } from "@/components/ComponentsDefault/foodsComponent";
+import {HeaderDefault} from "@/components/ComponentsDefault/header";
 
 const ItemFood = () => {
     const [url, setUrl] = useState('');
@@ -77,7 +77,7 @@ const ItemFood = () => {
                 <div>
                     {store.length !== 0 ? 
                     <h3>Menu da <span className="text-verdeescuro font-semibold">{store[0].storeName}</span></h3> : ""}
-                    <FoodComponentInstore variableName={menu}/> 
+                    <FoodComponentInStore variableName={menu}/> 
                 </div>
                 : "nada encontrado"}
             </div>
