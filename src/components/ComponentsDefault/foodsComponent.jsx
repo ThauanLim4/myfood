@@ -2,10 +2,7 @@ import Link from "next/link";
 import { CloseDefault } from "./header";
 import { useEffect, useState } from "react";
 import { fetchAllUsers, fetchAllStores } from "@/app/api/utils/utilitys";
-
-
 import axios from "axios";
-import { useData } from "@/context/foodsAndStoresContext";
 
 export const FoodComponent = ({ variableName }) => {
     return (

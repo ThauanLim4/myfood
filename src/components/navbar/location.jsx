@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SlArrowDown } from "react-icons/sl";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaSearchLocation, FaLocationCrosshairs } from "react-icons/fa";
+import { FaSearchLocation } from "react-icons/fa";
 
 import { fetchAllUsers } from "@/app/api/utils/utilitys";
 import "@/app/globals.css";
+import { CloseDefault } from "../ComponentsDefault/header";
+import { searchLocalization } from "../../app/api/utils/searchLocalization";
+import axios, { Axios } from "axios";
 
 export const Location = () => {
     const [modalLocation, setModalLocation] = useState(false);
@@ -13,111 +15,78 @@ export const Location = () => {
     const [userToken, setUserToken] = useState("");
     const [userLocation, setUserLocation] = useState("");
 
-    const [latitude, setLatitude] = useState(0);
-    const [longitude, setLongitude] = useState(0);
-
     useEffect(() => {
-        setUserLocation(() => JSON.parse(localStorage.getItem("location")) || "")
         const token = localStorage.getItem("token");
-        if (userLocation.length === 0) {
-
+        if (!userLocation) {
             setUserToken(token);
             const fetchLocation = async () => {
                 try {
                     const response = await fetchAllUsers();
                     const resultFilted = response.find((e) => e.authentication_key === token);
-                    if (resultFilted.lenght < 1) {
+                    if (!resultFilted) {
                         console.log("o usuário não possuíuma localização");
                     }
                     const loc = resultFilted.address;
-                    setUserLocation(loc)
-                    localStorage.setItem("location", JSON.stringify(loc))
+                    setUserLocation(loc);
+                    localStorage.setItem("location", JSON.stringify(loc));
                 } catch (erro) {
                     console.log("erro ao buscar endereço do usuário", erro);
                 }
             };
             fetchLocation();
         }
-    }, []);
+    }, [userLocation]);
 
 
-    const searchLocalization = async () => {
+    const getLocation = async () => {
         if (userLocation) {
             return console.log("localização do usuário já obtida");
-        } else {
-            onsole.log("isso aqui foi executado");
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    setLatitude(position.coords.latitude);
-                    setLongitude(position.coords.longitude);
-                })
-            }
-
-            const urlMap = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
-
+        }
+        try {
+            const result = await searchLocalization();
+            const response = await fetchAllUsers();
+            const resultFilted = response.find((e) => e.authentication_key === userToken);
+            console.log(result)
+            setAreaLocation(result);
+            setUserLocation(result);
+            localStorage.setItem("location", JSON.stringify(result));
             try {
-                const response = await fetch(urlMap);
-                if (!response.ok) {
-                    return console.log('erro ao buscar a localização');
-                }
-                const result = await response.json();
-                console.log(result)
-                const resultFilted = result.address.road + " - " + result.address.city_district;
-                setAreaLocation(resultFilted);
-                saveLocation();
 
+                const loc = JSON.parse(localStorage.getItem("location"))
+                const addLocation = await axios.post("/api/mysql/users/location", {
+                    address: loc,
+                    user_name: resultFilted.user_name
+                })
+                console.log(addLocation)
             } catch (erro) {
-                console.log("erro ao obter o endereço", erro)
+                console.log("erro ao adicionar localização", erro)
             }
-            const saveLocation = async () => {
-                try {
-                    const response = await fetch("/api/mysql/users", {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            address: areaLocation,
-                            authentication_key: userToken
-                        })
-                    });
-                    console.log(response)
-                } catch (erro) {
-                    console.log("erro ao salvar o endereço", erro)
-                }
-            }
-
+        } catch (erro) {
+            console.log("erro ao buscar localização", erro);
         }
 
     }
 
     return (
-        <>
+        <div>
             <button onClick={e => setModalLocation(!modalLocation)} className="flex items-center gap-2">
                 {areaLocation
                     ? <span className="flex items-center gap-1">{areaLocation} <SlArrowDown className="text-xs" /></span>
-                    : <span className="flex items-center gap-3">{userLocation ? userLocation : "Localização"} </span>}
+                    : <span className="flex items-center gap-3 self">{userLocation ? userLocation : "carregando localização..."} </span>}
             </button>
             {
                 modalLocation &&
                 <div className="flex flex-col gap-3 text-verdeescuro fixed inset-0 z-50 bg-verdeclaro p-3 border border-gray-500/25 rounded-lg">
-                    <h2 className="text-2xl text-black font-semibold mx-auto">
-                        Seu Endereço
-                    </h2>
-
-                    <button onClick={e => setModalLocation(!modalLocation)} className="text-xl fixed top-5 right-5">
-                        <IoIosArrowDown />
-                    </button>
-
+                    <CloseDefault functionClose={() => setModalLocation(false)} nameLocation={"Seu Endereço"} />
                     {userLocation &&
                         <div className="flex flex-col gap-3 mx-auto text-black border-black border-3 rounded-lg p-3 w-full max-w-2xl">
                             <h3 >R.{userLocation} </h3>
                         </div>}
                     {userLocation
-                        ? <button onClick={searchLocalization} className="flex items-center justify-center gap-3 btnDefault1-desabled fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Localização encontrada <FaSearchLocation /></button>
-                        : <button onClick={searchLocalization} className="flex items-center justify-center gap-3 btnDefault1 fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Procurar localização <FaSearchLocation /></button>}
+                        ? <button className="flex items-center justify-center gap-3 btnDefault1-desabled fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Localização já encontrada <FaSearchLocation /></button>
+                        : <button onClick={getLocation} className="flex items-center justify-center gap-3 btnDefault1 fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Procurar localização <FaSearchLocation /></button>}
                 </div>
             }
-        </>
+        </div>
     )
 }

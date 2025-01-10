@@ -10,6 +10,15 @@ import { FaUser } from "react-icons/fa";
 import { DataProvider } from "@/context/foodsAndStoresContext";
 
 export default function Home() {
+  return (
+    <section>
+      <HomeMobile />
+      <HomeDesktop />
+    </section>
+  )
+}
+
+export const HomeMobile = () => {
   const itensClass = "flex flex-col-reverse justify-center items-center cursor-pointer";
   const [selected, setSelected] = useState(() => {
     if (typeof window === "undefined") return "home";
@@ -25,7 +34,7 @@ export default function Home() {
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto">
+    <div className="hidden max-sm:block max-md:block max-lg:block max-w-screen-lg mx-auto">
       {selected === "home" && <section className="w-full h-full">
         <DataProvider>
           <HomeInitial />
@@ -43,7 +52,7 @@ export default function Home() {
 
 
 
-      <section className="hidden max-sm:block">
+      <section className="hidden max-sm:block max-md:block">
         <nav className="w-full p-3 bg-verdeclaro fixed bottom-0">
           <ul className="flex justify-around">
             <li onClick={() => setItemSelected("home")} className={`${itensClass} ${selected === "home" ? "selected" : ""}`}>Home <AiFillHome /></li>
@@ -54,4 +63,18 @@ export default function Home() {
       </section>
     </div>
   )
+
+}
+
+export const HomeDesktop = () => {
+  const itensClass = "flex flex-col-reverse justify-center items-center cursor-pointer";
+
+  return (
+    <div className="block max-sm:hidden max-md:hidden max-w-screen-lg mx-auto">
+      <DataProvider>
+        <HomeInitial />
+      </DataProvider>
+    </div>
+  )
+
 }

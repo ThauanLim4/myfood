@@ -17,8 +17,8 @@ export const CartItemComponent = ({ variableName }) => {
                 {
                     variableName.map((it, ind) => {
                         return (
-                            <div key={ind} className="flex gap-3 hover:shadow-sombra cursor-pointer w-full max-w-96 h-32max-h-36 mx-auto p-2">
-                                <img className="max-w-16 max-h-16" src={it.product_image} />
+                            <div key={ind} className="grid grid-cols-2-cols max-sm:border-b-2 border-gray-500/25 gap-3 hover:shadow-sombra cursor-pointer w-full max-w-96 h-32max-h-36 mx-auto p-2">
+                                <img className="max-w-16 max-h-16 mx-auto flex self-center" src={it.product_image} />
                                 <div className="flex flex-col justify-center gap-1">
                                     <h3 className="text-base first-letter:uppercase">{it.product_name}</h3>
                                     <div className="flex gap-3 items-center">
