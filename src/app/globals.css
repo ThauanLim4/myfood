@@ -110,6 +110,19 @@ body {
   cursor: not-allowed;
 }
 
+.btnDefault1-actived {
+  background: var(--verdeescuro);
+  color: whitesmoke;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: inset 0.1em 0.1em 3px black;
+  cursor: pointer;
+}
+
 .btnDefault1:hover {
   transform: translate(-0.05em, -0.05em);
   box-shadow: 0.15em 0.15em var(--verdeescuro);

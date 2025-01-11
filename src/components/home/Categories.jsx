@@ -14,7 +14,7 @@ export const CategoriesInitial = () => {
                     {itensCategories.map((item, index) => {
                         return (
                             <div key={index} className="hover:shadow-sombrainterna">
-                                <Link href={`categorias/${item.category.trim().toLocaleLowerCase()}`} className="flex flex-col items-center gap-3">
+                                <Link href={`categorias/${item.category.trim().toLocaleLowerCase()}`} className="flex flex-col items-center gap-3 bg-yellow-400 bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 rounded-lg">
                                     <div className={`${itensCategoriesClass} rounded-b-full`}>
                                         {item.img}
                                     </div>

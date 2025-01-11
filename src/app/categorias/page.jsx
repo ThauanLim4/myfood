@@ -1,6 +1,7 @@
 import Link from "next/link";
 import "@/app/globals.css";
 import { CategoriesSearch } from "@/components/search/Categories";
+import { HeaderDefault } from "@/components/ComponentsDefault/header";
 
 
 const HomeInitial = () => {
@@ -8,7 +9,8 @@ const HomeInitial = () => {
 
 
     return (
-        <div className="p-5">
+        <div className="max-w-screen-lg mx-auto">
+            <HeaderDefault nameLocation={"Categorias"} />
             <CategoriesSearch />
         </div>
     )
