@@ -16,6 +16,6 @@ export const itensCategories = [
 
     { id: 5, name: "Bebidas", img: <Image className="max-h-40 max-w-40" width={150} height={150} src={bebidas} alt="foto de um hamburguer" />, category: "bebidaria" },
 
-    { id: 4, name: "Sorvetes", img: <Image className="max-h-40 max-w-40" width={150} height={150} src={sorvetes} alt="foto de um hamburguer" />, category: "sorvetearia" },
+    { id: 4, name: "Sorvetes", img: <Image className="max-h-40 max-w-40" width={150} height={150} src={sorvetes} alt="foto de um hamburguer" />, category: "sorveteria" },
     { id: 4, name: "Doces", img: <Image className="max-h-40 max-w-40" width={150} height={150} src={doces} alt="foto de um hamburguer" />, category: "docearia" },
 ]

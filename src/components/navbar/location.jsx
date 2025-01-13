@@ -76,15 +76,18 @@ export const Location = () => {
             </button>
             {
                 modalLocation &&
-                <div className="flex flex-col gap-3 text-verdeescuro fixed inset-0 z-50 bg-verdeclaro p-3 border border-gray-500/25 rounded-lg">
+                <div className="flex flex-col gap-3 text-verdeescuro fixed inset-0 z-50 bg-verdeclaro border border-gray-500/25 rounded-lg">
                     <CloseDefault functionClose={() => setModalLocation(false)} nameLocation={"Seu Endereço"} />
-                    {userLocation &&
-                        <div className="flex flex-col gap-3 mx-auto text-black border-black border-3 rounded-lg p-3 w-full max-w-2xl">
-                            <h3 >R.{userLocation} </h3>
-                        </div>}
-                    {userLocation
-                        ? <button className="flex items-center justify-center gap-3 btnDefault1-desabled fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Localização já encontrada <FaSearchLocation /></button>
-                        : <button onClick={getLocation} className="flex items-center justify-center gap-3 btnDefault1 fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Procurar localização <FaSearchLocation /></button>}
+                    <span className="p-5">
+
+                        {userLocation &&
+                            <div className="flex flex-col gap-3 mx-auto text-black border-black border-3 rounded-lg p-3 w-full max-w-2xl">
+                                <h3 >R.{userLocation} </h3>
+                            </div>}
+                        {userLocation
+                            ? <button className="flex items-center justify-center gap-3 btnDefault1-desabled fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Localização já encontrada <FaSearchLocation /></button>
+                            : <button onClick={getLocation} className="flex items-center justify-center gap-3 btnDefault1 fixed bottom-5 left-5 right-5 max-w-80 mx-auto">Procurar localização <FaSearchLocation /></button>}
+                    </span>
                 </div>
             }
         </div>

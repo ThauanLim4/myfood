@@ -39,9 +39,17 @@ body {
 
 }
 
+/* SOMBREAMENTOS  */
 .textshadow {
   text-shadow: 0px 0px 5px var(--laranja);
 }
+
+.shadow-container {
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
 
 .roundedFull {
   border-radius: 100%;
@@ -91,9 +99,10 @@ body {
   cursor: pointer;
   width: 24px;
   height: 24px;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1px;
 }
 
 .btnDefault1-desabled {
@@ -131,4 +140,8 @@ body {
 .btnDefault1:active {
   transform: translate(0.05em, 0.05em);
   box-shadow: 0.05em 0.05em var(--verdeescuro);
+}
+
+.max-h-600 {
+  max-height: 600px;
 }

@@ -32,3 +32,22 @@ export async function POST(request) {
         return NextResponse.json({ message: "não foi adicionado ao carrinho", success: false }, { status: 400 })
     }
 }
+
+export async function PUT(request) {
+    try {
+        const body = await request.json();
+        const { user_id, quanty} = body;
+        if (!user_id || !quanty ) {
+            return new Response(JSON.stringify({ erro: "campos inválidos" }))
+        }
+        const connection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
+        const [rows] = await connection.execute(`UPDATE cart SET quanty = ? WHERE user_id = ?`, [quanty, user_id]);
+
+        await connection.end();
+        return NextResponse.json({ message: "produto atualizado com sucesso", success: true, rows }, { status: 201 })
+
+    } catch (erro) {
+        console.error("Error inserting into the database", erro);
+        return NextResponse.json({ message: "não foi adicionado ao carrinho", success: false }, { status: 400 })
+    }
+}

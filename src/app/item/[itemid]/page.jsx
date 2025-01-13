@@ -87,13 +87,13 @@ const ItemFood = () => {
 
 
     return (
-        <div className="">
+        <div className="max-w-screen-lg mx-auto">
             {item.map((item, ind) => {
                 return (
                     <span key={ind}>
                         <div key={ind} className="flex flex-col gap-3 p-5">
-                            <div className="mx-auto flex flex-col items-center w-full max-h-40 ">
-                                <img className="w-full max-h-40 object-contain" src={item.images} alt="" />
+                            <div className="mx-auto flex flex-col items-center justify-center w-full max-w-md max-h-40 bg-amarelo rounded-xl">
+                                <img className="w-full max-w-48 max-h-48 object-contain"  src={item.images} alt="" />
                             </div>
                             <div className="flex gap-3 flex-col border-b-2 border-gray-500/25 pb-3">
                                 <h2 className="text-xl font-semibold">{item.food}</h2>
@@ -115,7 +115,7 @@ const ItemFood = () => {
                             </div>
 
                         </div>
-                        <div className="flex justify-center pt-3 max-h-28 fixed bottom-5 left-5 right-5 gap-5">
+                        <div className="flex justify-center pt-3 max-h-28 fixed bottom-5 left-5 right-5 gap-5 mx-auto max-w-screen-sm">
                             <button className="bg-verdeescuro text-verdeclaro px-3 py-1 w-full btnDefault1"
                                 onClick={addProductToCart}>Adicionar ao carrinho</button>
                         </div>

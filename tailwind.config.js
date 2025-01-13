@@ -25,6 +25,10 @@ module.exports = {
       borderWidth: {
         3: "3px",
       },
+      maxHeight: {
+        '600': "600px",
+        'complete': "100%"
+      }
     },
   },
   plugins: [],
