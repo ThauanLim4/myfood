@@ -1,10 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchAllFoods } from "@/app/api/utils/utilitys";
-import { FoodComponent } from "@/components/ComponentsDefault/foodsComponent";
 import { FoodComponentForSearch } from "@/components/ComponentsDefault/foodsComponent";
 import { HeaderDefault } from "@/components/ComponentsDefault/header";
-import { set } from "mongoose";
 const SearchPage = () => {
     const [resultSearch, setResultSearch] = useState([]);
     const [CurrentLocation, setCurrentLocation] = useState("");

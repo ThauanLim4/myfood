@@ -1,5 +1,5 @@
 "use client";
-import { CartItemComponent } from "@/components/ComponentsDefault/cartItemComponent";
+import { CartItemComponent } from "@/components/cart/cartItemComponent";
 import { useEffect, useState } from "react";
 import { fetchAllUsers, fetchAllItensInCart } from "@/app/api/utils/utilitys";
 import empty_cart from "../../../public/empty_cart.svg"

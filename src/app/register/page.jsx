@@ -1,15 +1,21 @@
 "use client";
 import { useState } from "react";
-const Register = () => {
+import Link from "next/link";
+import Image from "next/image";
+import { HeaderDefault } from "@/components/ComponentsDefault/header";
+import createaccount from "../../../public/create_account.svg";
 
+import { MdEmail } from "react-icons/md";
+import { MdPassword } from "react-icons/md";
+import { MdPerson } from "react-icons/md";
+import { InputText } from "@/components/ComponentsDefault/inputText";
+
+const Register = () => {
     const [users, setUsers] = useState([]);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const [mensage, setMensage] = useState("");
-
     const addUser = async (eve) => {
         try {
             const response = await fetch('/api/mysql/user', {
@@ -22,14 +28,10 @@ const Register = () => {
                     email,
                     password
                 })
-
-
             });
             const data = await response.json();
             setUsers([...users, data]);
-
             console.log(data)
-
             if (response.ok) {
                 console.log("usuário criado com sucesso");
                 window.location.href = "/login";
@@ -43,25 +45,25 @@ const Register = () => {
     }
 
     return (
-        <div className="p-5">
-            <div>
-                <h1>Users</h1>
+        <div className="max-w-screen-lg mx-auto">
+            <HeaderDefault nameLocation={"Registrar"} />
+            <div className="p-5 grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-1 gap-5">
+                <Image src={createaccount} alt="login" className="mx-auto" />
 
-                <div className="flex flex-col gap-5">
+                <h2 className="text-3xl font-semibold mb-10">Crie Sua Conta</h2>
 
-                    <label htmlFor="user_name">Nome</label>
-                    <input type="text" name="user_name" id="user_name" value={name} onChange={e => setName(e.target.value)} />
+                <form method="post" className="flex flex-col items-center justify-center gap-5 border-b-2 border-gray-500/25 mx-auto w-full">
+                    <InputText Icon={MdPerson} value={name} setValue={setName} placeholder={"Nome de usuário"} />
 
-                    <label htmlFor="user_email">Email</label>
-                    <input type="text" name="user_email" id="user_email" value={email} onChange={e => setEmail(e.target.value)} />
+                    <InputText Icon={MdEmail} value={email} setValue={setEmail} placeholder={"Email"} />
 
-                    <label htmlFor="user_password">Senha</label>
-                    <input type="text" name="user_password" id="user_password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <InputText Icon={MdPassword} value={password} setValue={setPassword} placeholder={"Senha"} />
 
-                    <button onClick={addUser}>Criar usuário</button>
+                    <button type="submit" onClick={addUser} className="btnDefault1 mb-5 w-full">Criar conta</button>
+                </form>
+                <div>
+                    <h1>Já possui uma conta? Então <Link href="/login" className="text-verdeescuro">faça login</Link></h1>
                 </div>
-
-                {mensage}
             </div>
         </div>
     )

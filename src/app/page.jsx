@@ -52,8 +52,8 @@ export const HomeMobile = () => {
 
 
 
-      <section className="hidden max-sm:block max-md:block">
-        <nav className="w-full p-3 bg-verdeclaro fixed bottom-0">
+      <section className="hidden max-sm:block max-md:block ">
+        <nav className="w-full p-3 bg-verdeclaro fixed bottom-0 border-t-2 border-gray-500/25">
           <ul className="flex justify-around">
             <li onClick={() => setItemSelected("home")} className={`${itensClass} ${selected === "home" ? "selected" : ""}`}>Home <AiFillHome /></li>
             <li onClick={() => setItemSelected("search")} className={`${itensClass} ${selected === "search" ? "selected" : ""}`}>Pesquisar <FaSearch /></li>

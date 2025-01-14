@@ -2,11 +2,11 @@ import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 export const StoreComponent = ({ variableName }) => {
     return (
-        <div className="mx-auto grid max-md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5" >
+        <div className="mt-10 max-w-screen-lg mx-auto grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 max-lg:grid-cols-2 gap-5">
             {
                 variableName.map((item, ind) => {
                     return (
-                        <div key={ind} className="border border-gray-500/25 p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-80 h-32 max-w-80 max-h-36">
+                        <div key={ind} className="border border-gray-500/25 rounded-lg p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-full h-32 max-w-96 max-h-36">
                             <Link href={`/store/${item.storeName.toLowerCase()}?storeid=${item.storeIndentification}`} className="flex gap-3">
                                 <img className="object-cover roundedFull" src={item.storeImages ? item.storeImages : "https://res.cloudinary.com/dhl67mauv/image/upload/v1734696916/Closed_Stores-bro_iqr7zd.svg"} />
                                 <div className="flex flex-col gap-1">

@@ -1,27 +1,13 @@
 import "@/app/globals.css";
-import { FaStar } from "react-icons/fa";
-import Link from "next/link";
+import { StoreComponent } from "../ComponentsDefault/storeComponents";
 
 export const StoresInitial = ({stores}) => {
     return (
         <div className="mt-10">
             <h2 className="text-xl font-semibold">Lojas disponiveis</h2>
 
-            <div className="mx-auto grid max-md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-                {stores.map((it, ind) => {
-                    return (
-                        <div key={ind} className="border border-gray-500/25 p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-80 h-32 max-w-80 max-h-36">
-                            <Link href={`/store/${it.storeName.toLowerCase()}?storeid=${it.storeIndentification}`} className="flex gap-3">
-                                <img className="object-cover roundedFull" src={it.storeImages ? it.storeImages : "https://res.cloudinary.com/dhl67mauv/image/upload/v1734696916/Closed_Stores-bro_iqr7zd.svg"} />
-                                <div className="flex flex-col gap-1">
-                                    <h3 className="text-xl">{it.storeName}</h3>
-                                    <div><span className="bg-amarelo px-1 text-xs">{it.type}</span></div>
-                                    <div className="flex items-center gap-3"><FaStar className="text-yellow-300" /> {it.stars.toFixed(1)}</div>
-                                </div>
-                            </Link>
-                        </div>
-                    )
-                })}
+            <div className="mx-auto max-w-screen-lg">
+                {<StoreComponent variableName={stores} />}
             </div>
         </div>
     )

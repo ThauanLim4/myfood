@@ -47,12 +47,15 @@ export const User = () => {
                 {userLogged ?
                     <div className="flex gap-5 items-center">
                         <Image className="max-w-16" src={user} alt="imagem do usuário logado" />
-                        <h3 className="text-2xl">{usersInfos.user_name}</h3>
+                        <div>
+                            <h3 className="text-xl font-semibold">{usersInfos.user_name}</h3>
+                            <p className="text-sm">{usersInfos.user_email}</p>
+                        </div>
                     </div>
                     :
                     <Link href={"/login"}>
-                        <li className={itensClass}> 
-                        {userLogged ? "Logado" : <span className="flex items-center gap-3"><CiLogin /> Fazer login</span>} </li>
+                        <li className={itensClass}>
+                            {userLogged ? "Logado" : <span className="flex items-center gap-3"><CiLogin /> Fazer login</span>} </li>
                     </Link>}
 
                 {userLogged && <>
@@ -69,20 +72,11 @@ export const User = () => {
                         </li>
                     </Link>
                     <Link href={"/requests"}>
-                    <li className={itensClass}>
-                        <span className="flex items-center gap-3"><PiNewspaperClipping /> Pedidos</span>
-                        <SlArrowRight className="text-xs" />
-                    </li>
+                        <li className={itensClass}>
+                            <span className="flex items-center gap-3"><PiNewspaperClipping /> Pedidos</span>
+                            <SlArrowRight className="text-xs" />
+                        </li>
                     </Link>
-                    <li className={itensClass}>
-                        <span className="flex items-center gap-3"><CiLocationOn /> Endereço</span>
-                        <SlArrowRight className="text-xs" />
-                    </li>
-                    <li className={itensClass}>
-                        <span className="flex items-center gap-3"><RiAccountBoxLine /> Detalhes da conta</span>
-                        <SlArrowRight className="text-xs" />
-                    </li>
-
                     <li className={itensClass} onClick={MakeLogout}>
                         <span className="flex items-center gap-3"><CiLogout /> Sair</span>
                         <SlArrowRight className="text-xs" />
