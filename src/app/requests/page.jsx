@@ -28,7 +28,7 @@ const Favorites = () => {
 
     return (
         <div className="h-full flex flex-col gap-5">
-            <HeaderDefault nameLocation={"Favoritos"} />
+            <HeaderDefault nameLocation={"Pedidos"} />
             <div className="flex items-center justify-center mt-auto">
 
                 {

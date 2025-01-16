@@ -82,7 +82,7 @@ const FoodCategory = () => {
 
                 </div>
             </div>
-            <div className="mx-auto gap-5 mt-5">
+            <div className="mx-auto gap-5 px-5">
                 {storesType && 
                 <>
                     {storesTypeFiltered.length === 0 ? <StoreComponent variableName={storesType} /> : ""}

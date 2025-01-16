@@ -28,7 +28,7 @@ const Favorites = () => {
     }, []);
 
     return (
-        <div className="h-full flex flex-col gap-5">
+        <div className="h-full flex flex-col gap-5 max-w-screen-lg mx-auto">
             <HeaderDefault nameLocation={"Carrinho"} />
             <div className="flex items-center justify-center mt-auto">
 

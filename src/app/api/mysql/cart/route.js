@@ -37,12 +37,12 @@ export async function POST(request) {
 export async function PUT(request) {
     try {
         const body = await request.json();
-        const { id } = body;
-        if ( !id) {
+        const { id, action } = body;
+        if ( !id || !action) {
             return new Response(JSON.stringify({ erro: "campos inválidos" }))
         }
         const connection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
-        const [rows] = await connection.execute(`UPDATE cart SET quanty = quanty + 1 WHERE id = ?`, [id]);
+        const [rows] = await connection.execute(`UPDATE cart SET quanty = quanty ${action} 1 WHERE id = ?`, [id]);
 
         await connection.end();
         return NextResponse.json({ message: "produto atualizado com sucesso", success: true, rows }, { status: 201 })

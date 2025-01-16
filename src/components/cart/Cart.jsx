@@ -27,7 +27,7 @@ export const CartModal = () => {
 
     return (
         <div className="h-full flex flex-col gap-5">
-            <div className="flex items-center justify-center mt-auto">
+            <div className="flex items-center justify-center mt-auto ">
 
                 {productsInCart
                     ? <CartItemComponent variableName={productsInCart} />

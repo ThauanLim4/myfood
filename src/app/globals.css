@@ -9,6 +9,7 @@
   --verdeclaro: #ABBA7C;
   --amarelo: #FFE31A;
   --laranja: #F09319;
+  --vermelho: #8E1616;
   --sombrainterna: rgba(0, 0, 0, 0.06) 0 2px 4px;
   --sombracontainer: rgba(0, 0, 0, 0.06) 0 0px 7px 4px;
 
@@ -36,9 +37,25 @@ body {
   object-fit: contain;
   max-width: 125px;
   height: 125px;
-
 }
 
+.imgsStoreComponent {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  max-width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.imgsCheckoutComponent {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  max-width: 75px;
+  height: 75px;
+  border-radius: 1.5em;
+}
 /* SOMBREAMENTOS  */
 .textshadow {
   text-shadow: 0px 0px 5px var(--laranja);

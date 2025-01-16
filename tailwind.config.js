@@ -14,6 +14,10 @@ module.exports = {
         verdeclaro: "var(--verdeclaro)",
         amarelo: "var(--amarelo)",
         laranja: "var(--laranja)",
+        vermelho: "var(--vermelho)",
+        cordopix: "#38BEB0",
+        cordodinheiro: "#C2E7C5",
+        cordocartao: "#ffc408",
       },
       boxShadow: {
         sombrainterna: "var(--sombrainterna)",
@@ -21,6 +25,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         '2-cols': '0.5fr 1fr',
+        '3-cols': '0.7fr 1fr 0.3fr',
       },
       borderWidth: {
         3: "3px",
