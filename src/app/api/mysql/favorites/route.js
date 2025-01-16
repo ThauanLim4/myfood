@@ -1,13 +1,23 @@
 import mysql from "mysql2/promise"
 import { NextResponse } from "next/server";
 
+export async function OPTIONS() {
+    return NextResponse.json({}, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        }
+    });
+}
+
 export async function GET() {
     try {
         const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
         const [rows] = await conection.execute("SELECT * FROM favorite");
 
         await conection.end();
-        return NextResponse.json(rows);
+        return NextResponse.json(rows, {headers: { 'Access-Control-Allow-Origin': '*' }});
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro)
     }
