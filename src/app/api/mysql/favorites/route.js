@@ -10,13 +10,17 @@ export async function OPTIONS() {
         }
     });
 }
-
 export async function GET() {
     try {
-        const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
-        const [rows] = await conection.execute("SELECT * FROM favorite");
-
-        await conection.end();
+        const connection = await mysql.createConnection({
+            host: 'junction.proxy.rlwy.net',
+            user: 'root',
+            password: 'VnTcdxYndhugegcsgziTgEymdLfCcWZo',
+            database: 'railway',
+            port: 54287
+        });
+        const [rows] = await connection.execute("SELECT * FROM favorite");
+        await connection.end();
         return NextResponse.json(rows, {headers: { 'Access-Control-Allow-Origin': '*' }});
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro)
@@ -28,8 +32,18 @@ export async function POST(request) {
         const body = await request.json();
         const { store_id, store_indentification_key, store_name, store_image, user_authentication_key } = body;
 
-        const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
-        const [rows] = await conection.execute(`INSERT INTO favorite (store_id, store_indentification_key, store_name, store_image, user_authentication_key) VALUES (?, ?, ?, ?, ?)`, [store_id, store_indentification_key, store_name, store_image, user_authentication_key]);
+        const connection = await mysql.createConnection({
+            host: 'junction.proxy.rlwy.net',
+            user: 'root',
+            password: 'VnTcdxYndhugegcsgziTgEymdLfCcWZo',
+            database: 'railway',
+            port: 54287
+        });
+        
+        const [rows] = await connection.execute(
+            `INSERT INTO favorite (store_id, store_indentification_key, store_name, store_image, user_authentication_key) VALUES (?, ?, ?, ?, ?)`, [store_id, store_indentification_key, store_name, store_image, user_authentication_key]);
+
+        await connection.end();
 
         return NextResponse.json({ message: "adicionado ao carrinho com sucesso", success: true, rows }, { status: 201 }, { message: 'Requisição bem-sucedida' }, {
             headers: {
@@ -54,9 +68,17 @@ export async function DELETE(request) {
         const body = await request.json();
         const { store_id } = body;
 
-        const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
-        const [rows] = await conection.execute(`DELETE FROM favorite WHERE store_id = ?`, [store_id]);
+        const connection = await mysql.createConnection({
+            host: 'junction.proxy.rlwy.net',
+            user: 'root',
+            password: 'VnTcdxYndhugegcsgziTgEymdLfCcWZo',
+            database: 'railway',
+            port: 54287
+        });
 
+        const [rows] = await connection.execute(`DELETE FROM favorite WHERE store_id = ?`, [store_id]);
+
+        await connection.end();
         return NextResponse.json({ message: "Item removido dos favoritos com sucesso", success: true, rows }, { status: 200 }, {headers: { 'Access-Control-Allow-Origin': '*' }});
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro);
