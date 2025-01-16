@@ -15,9 +15,9 @@ const Favorites = () => {
         const fetchFavs = async () => {
             try {
                 const result = await fetchAllFavorites();
-                const resultFilted = await result.filter(
-                    favs => favs.user_authentication_key === token)
+                const resultFilted = await result.filter(favs => favs.user_authentication_key === token)
                 setItensFav(resultFilted);
+                console.log(resultFilted);
             } catch (erro) {
                 console.log("erro ao buscar o banco de dados");
             }
