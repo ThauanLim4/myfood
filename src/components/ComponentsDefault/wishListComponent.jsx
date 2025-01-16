@@ -29,9 +29,7 @@ export const WishListComponent = ({ variableName }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    store_id,
-                }),
+                body: JSON.stringify({store_id}),
             });
             if(response.ok) {
                 window.location.reload();

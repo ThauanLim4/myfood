@@ -57,7 +57,7 @@ export async function DELETE(request) {
         const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
         const [rows] = await conection.execute(`DELETE FROM favorite WHERE store_id = ?`, [store_id]);
 
-        return NextResponse.json({ message: "Item removido dos favoritos com sucesso", success: true, rows }, { status: 200 })
+        return NextResponse.json({ message: "Item removido dos favoritos com sucesso", success: true, rows }, { status: 200 }, {headers: { 'Access-Control-Allow-Origin': '*' }});
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro);
     }
