@@ -57,3 +57,23 @@ export const fetchAllFavorites = async () => {
         console.log("não foi possível pegar os ítens favoritados");
     }
 }
+
+export const fetchAllRequests = async () => {
+    try {
+        const response = await fetch("/api/mysql/request");
+        const result = await response.json();
+        return result;
+    } catch (erro) {
+        console.log("não foi possível pegar os pedidos");
+    }
+}
+
+export const fetchAllRequestsItens = async () => {
+    try {
+        const response = await fetch("/api/mysql/request/request_itens");
+        const result = await response.json();
+        return result;
+    } catch (erro) {
+        console.log("não foi possível pegar os pedidos");
+    }
+}

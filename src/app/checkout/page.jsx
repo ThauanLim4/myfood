@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchAllUsers, fetchAllItensInCart } from "../api/utils/utilitys";
+import { fetchAllUsers, fetchAllItensInCart, fetchAllStores } from "../api/utils/utilitys";
 import { CheckoutComponent } from "@/components/cart/checkoutComponent";
 import { CartItemComponent } from "@/components/cart/cartItemComponent";
 import { HeaderDefault } from "@/components/ComponentsDefault/header";
@@ -9,6 +9,7 @@ import { HeaderDefault } from "@/components/ComponentsDefault/header";
 const Checkout = () => {
     const [user, setUser] = useState([]);
     const [cart, setCart] = useState([]);
+    const [store, setStore] = useState([]);
 
     useEffect(() => {
         const tokenUser = localStorage.getItem("token");
@@ -36,10 +37,9 @@ const Checkout = () => {
         fetchUser();
     }, []);
     return (
-        <div>
+        <div className="max-w-screen-lg mx-auto">
             <HeaderDefault nameLocation={"Checkout"} />
-            <div className="p-5 max-w-screen-lg mx-auto">
-
+            <div className="p-5" >
                 {cart.length !== 0
                     ? <CheckoutComponent variableName={cart} userInfos={user} />
                     :
