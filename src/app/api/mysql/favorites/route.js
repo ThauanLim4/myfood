@@ -31,10 +31,20 @@ export async function POST(request) {
         const conection = await mysql.createConnection("mysql://root:VnTcdxYndhugegcsgziTgEymdLfCcWZo@junction.proxy.rlwy.net:54287/railway");
         const [rows] = await conection.execute(`INSERT INTO favorite (store_id, store_indentification_key, store_name, store_image, user_authentication_key) VALUES (?, ?, ?, ?, ?)`, [store_id, store_indentification_key, store_name, store_image, user_authentication_key]);
 
-        return NextResponse.json({ message: "adicionado ao carrinho com sucesso", success: true, rows }, { status: 201 })
+        return NextResponse.json({ message: "adicionado ao carrinho com sucesso", success: true, rows }, { status: 201 }, { message: 'Requisição bem-sucedida' }, {
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
 
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro);
+        return NextResponse.json({ error: 'Erro ao processar a requisição' }, {
+            status: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
     }
 }
 
