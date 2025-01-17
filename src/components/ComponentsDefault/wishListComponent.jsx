@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { fetchAllStores } from "@/app/api/utils/utilitys";
 import { FaStar } from "react-icons/fa";
+import { api } from "@/app/api/utils/api";
 export const WishListComponent = ({ variableName }) => {
     const [storeInfos, setStoreInfos] = useState([]);
-    console.log(variableName);
+    console.log(variableName[0].store_id);
 
     useEffect(() => {
         const getStoreInfos = async () => {
@@ -23,25 +24,24 @@ export const WishListComponent = ({ variableName }) => {
     }, []);
 
     const removeItemFromWishList = async (store_id) => {
+        console.log(store_id);
         try {
-            const response = await fetch("http://localhost:3000/api/mysql/favorites", {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({store_id}),
+            const response = await api.delete("/favorites", {
+                data: {
+                    store_id: store_id
+                }
             });
-            if(response.ok) {
+            if(response.status === 200) {
                 window.location.reload();
             }
         } catch (error) {
-            console.log(error);
+            console.log("essa requisição tá com viadagem");
         }
     }
     return (
         variableName.map((item, ind) => {
             return (
-                <div key={ind} className="border flex flex-col border-gray-500/25 rounded-lg p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-full h-32 max-w-96 max-h-36">
+                <div key={ind} className="border flex flex-col border-gray-500/25 rounded-lg p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-full h-full max-h-36 max-w-96">
                     <div className="flex items-center justify-between">
                         <Link href={`/store/${item.store_name.toLowerCase()}?storeid=${item.store_indentification_key}`} className="grid grid-cols-2-cols gap-3">
                             <img className="imgsStoreComponent" src={item.store_image ? item.store_image : "https://res.cloudinary.com/dhl67mauv/image/upload/v1734696916/Closed_Stores-bro_iqr7zd.svg"} />
@@ -54,7 +54,7 @@ export const WishListComponent = ({ variableName }) => {
                                     {storeInfos ? storeInfos.stars : "Indefinido"}</div>
                             </div>
                         </Link>
-                        <div className="flex self-start justify-center items-end">
+                        <div className="flex self-start justify-center items-end py-1">
                             <button onClick={() => removeItemFromWishList(item.store_id)}>
                                 <FaHeart className="text-xl text-vermelho" />
                             </button>

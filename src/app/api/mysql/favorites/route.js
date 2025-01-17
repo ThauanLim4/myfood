@@ -76,10 +76,11 @@ export async function DELETE(request) {
             port: 54287
         });
 
-        const [rows] = await connection.execute(`DELETE FROM favorite WHERE store_id = ?`, [store_id]);
+        const [rows] = await connection.execute(`DELETE FROM favorite WHERE store_id = ${store_id}`);
 
         await connection.end();
-        return NextResponse.json({ message: "Item removido dos favoritos com sucesso", success: true, rows }, { status: 200 }, {headers: { 'Access-Control-Allow-Origin': '*' }});
+        return NextResponse.json(
+            { message: "Item removido dos favoritos com sucesso", success: true, rows }, { status: 200 }, {headers: { 'Access-Control-Allow-Origin': '*' }});
     } catch (erro) {
         console.log("erro conectar ao banco de dados", erro);
     }

@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { api } from "@/app/api/utils/api";
+
 export const StoreComponent = ({ variableName }) => {
     const [userToken, setUserToken] = useState("");
     console.log(variableName);
@@ -12,18 +14,12 @@ export const StoreComponent = ({ variableName }) => {
     }, [])
     const addStoreToWishList = async (store_id, store_indentification_key, store_name, store_image) => {
         try {
-            const response = await fetch("http://localhost:3000/api/mysql/favorites", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    store_id,
-                    store_indentification_key,
-                    store_name,
-                    store_image,
-                    user_authentication_key: userToken,
-                }),
+            const response = await api.post("/favorites", {
+                store_id,
+                store_indentification_key,
+                store_name,
+                store_image,
+                user_authentication_key: userToken,
             });
             if (response.ok) {
                 window.location.reload();
@@ -36,7 +32,7 @@ export const StoreComponent = ({ variableName }) => {
                 variableName.map((item, ind) => {
                     return (
                         <div key={ind} className="border border-gray-500/25 rounded-lg p-3 gap-5 hover:shadow-lg hover:cursor-pointer storeContainer justify-self-center w-full h-32 max-w-96 max-h-36">
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-center">
                                 <Link href={`/store/${item.storeName.toLowerCase()}?storeid=${item.storeIndentification}`} className="grid grid-cols-3-cols gap-3">
                                     <img className="imgsStoreComponent" src={item.storeImages ? item.storeImages : "https://res.cloudinary.com/dhl67mauv/image/upload/v1734696916/Closed_Stores-bro_iqr7zd.svg"} />
                                     <div className="flex flex-col gap-1">
