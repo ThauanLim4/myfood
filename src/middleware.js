@@ -29,5 +29,5 @@ export function middleware(req) {
 }
 
 export const config = {
-    matcher: '/app/api/mysql/:path*'
+    matcher: '/api/mysql/:path*'
 }
