@@ -9,7 +9,6 @@ import Image from "next/image";
 const Favorites = () => {
 
     const [productsInCart, setProductsInCart] = useState([]);
-    const [userInfos, setUserInfos] = useState([]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");

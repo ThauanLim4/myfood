@@ -19,7 +19,7 @@ export const CartItemComponent = ({ variableName }) => {
         console.log("total:", totalPrice, "quanty:", totalOfProducts);
     }, [variableName]);
 
-    const AddAMOreItemOnCart = async (id, action) => {
+    const AddMoreItemOnCart = async (id, action) => {
         console.log("id do item no carrinho:", id);
         const addMoreItemResponse = await fetch("http://localhost:3000/api/mysql/cart", {
             method: "PUT",
@@ -33,8 +33,6 @@ export const CartItemComponent = ({ variableName }) => {
 
         if (addMoreItemResponse.ok) {
             window.location.reload();
-            console.log("produto adicionado ao carrinho");
-            console.log(addMoreItemResponse);
         }
     }
 
@@ -87,16 +85,19 @@ export const CartItemComponent = ({ variableName }) => {
                                     <span>R$ {it.unit_price && it.unit_price.toFixed(2).replace(".", ",")}</span>
                                     <div className="flex items-center gap-3">
                                         {it.quanty === 1
-                                            ? <button className="btnDefaultCart" onClick={e => RemoveItemOfCart(it.id)}>
+                                            ? <button className="btnDefaultCart" 
+                                            onTouchStart={e => RemoveItemOfCart(it.id)} onClick={e => RemoveItemOfCart(it.id)}>
                                                 <FaTrash className="text-xs" />
                                             </button>
-                                            : <button className="btnDefaultCart" onClick={e => RemoveAItemOfCart(it.id)}>
+                                            : <button className="btnDefaultCart" 
+                                            onTouchStart={e => RemoveAItemOfCart(it.id)} onClick={e => RemoveAItemOfCart(it.id)}>
                                                 <MdExposureNeg1 />
                                             </button>
                                         }
                                         <span>Quant. {it.quanty}</span>
                                         <button className="btnDefaultCart"
-                                            onClick={e => AddAMOreItemOnCart(it.id)}><MdExposurePlus1 /></button>
+                                            onTouchStart={e => AddMoreItemOnCart(it.id)}
+                                            onClick={e => AddMoreItemOnCart(it.id)}><MdExposurePlus1 /></button>
                                     </div>
                                 </div>
                             </div>
