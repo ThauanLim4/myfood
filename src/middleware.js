@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export function middleware(req) {
     const origin = req.headers.get('origin');
-    const allowedOrigins = ['http://localhost:3000', 'https://seu-dominio.com'];
+    const allowedOrigins = ['http://localhost:3000'];
 
     if (allowedOrigins.includes(origin)) {
         const res = NextResponse.next();
@@ -29,5 +29,5 @@ export function middleware(req) {
 }
 
 export const config = {
-    matcher: '/api/mysql/:path*'
+    matcher: '/app/api/mysql/:path*'
 }
