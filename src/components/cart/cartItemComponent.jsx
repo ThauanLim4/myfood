@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { MdExposurePlus1, MdExposureNeg1 } from "react-icons/md";
 import Link from "next/link";
 import { api } from "./../../app/api/utils/api";
-import axios from "axios";
 
 export const CartItemComponent = ({ variableName }) => {
     const [total, setTotal] = useState(0);
@@ -23,7 +22,16 @@ export const CartItemComponent = ({ variableName }) => {
     const AddMoreItemOnCart = async (id) => {
         try {
             console.log("Item adicionado ao carrinho");
-            const addMoreItemResponse = await axios.put("http://localhost:3000/api/mysql/cart", { id, action: "+" });
+            const addMoreItemResponse = await fetch("http://localhost:3000/api/mysql/cart", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id,
+                    action: "+"
+                }),
+            });
             console.log("requisição:", addMoreItemResponse);
             if (addMoreItemResponse.status === 201) {
                 console.log("requisição bem sucedida");
@@ -35,7 +43,7 @@ export const CartItemComponent = ({ variableName }) => {
 
     const RemoveAItemOfCart = async (id) => {
         console.log("id do item no carrinho:", id);
-        const addMoreItemResponse = await api.put("/cart", {id, action: "-"})
+        const addMoreItemResponse = await api.put("/cart", { id, action: "-" })
 
         if (addMoreItemResponse.status === 201) {
             window.location.reload();
@@ -44,7 +52,7 @@ export const CartItemComponent = ({ variableName }) => {
 
     const RemoveItemOfCart = async (id) => {
         console.log("id:", id);
-        const response = await api.delete("/cart", { 
+        const response = await api.delete("/cart", {
             data: { id }
         });
         if (response.status === 200) {
@@ -72,7 +80,6 @@ export const CartItemComponent = ({ variableName }) => {
 
                                         <span>Quant. {it.quanty}</span>
                                         <button className="btnDefaultCart"
-                                            // onTouchStart={e => AddMoreItemOnCart(it.id)}
                                             onClick={e => AddMoreItemOnCart(it.id)}><MdExposurePlus1 />
                                         </button>
                                     </div>
