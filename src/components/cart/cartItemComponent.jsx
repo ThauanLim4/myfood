@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MdExposurePlus1, MdExposureNeg1 } from "react-icons/md";
 import Link from "next/link";
 import { api } from "./../../app/api/utils/api";
+import axios from "axios";
 
 export const CartItemComponent = ({ variableName }) => {
     const [total, setTotal] = useState(0);
@@ -22,7 +23,7 @@ export const CartItemComponent = ({ variableName }) => {
     const AddMoreItemOnCart = async (id) => {
         try {
             console.log("Item adicionado ao carrinho");
-            const addMoreItemResponse = await api.put("/cart", { id, action: "+" });
+            const addMoreItemResponse = await axios.put("http://localhost:3000/api/mysql/cart", { id, action: "+" });
             console.log("requisição:", addMoreItemResponse);
             if (addMoreItemResponse.status === 201) {
                 console.log("requisição bem sucedida");
