@@ -20,6 +20,7 @@ export const CartItemComponent = ({ variableName }) => {
     }, [variableName]);
 
     const AddMoreItemOnCart = async (id) => {
+        alert("Item adicionado ao carrinho");
         const addMoreItemResponse = await api.put("/cart", { id, action: "+" });
         if (addMoreItemResponse.status === 201) {
             window.location.reload();
@@ -65,7 +66,7 @@ export const CartItemComponent = ({ variableName }) => {
 
                                         <span>Quant. {it.quanty}</span>
                                         <button className="btnDefaultCart"
-                                            onTouchStart={e => AddMoreItemOnCart(it.id)}
+                                            // onTouchStart={e => AddMoreItemOnCart(it.id)}
                                             onClick={e => AddMoreItemOnCart(it.id)}><MdExposurePlus1 />
                                         </button>
                                     </div>
