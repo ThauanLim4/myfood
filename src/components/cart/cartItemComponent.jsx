@@ -2,13 +2,13 @@
 import "@/app/globals.css";
 import { useState, useEffect } from "react";
 import { MdExposurePlus1, MdExposureNeg1 } from "react-icons/md";
-import { FaTrash } from "react-icons/fa";
 import Link from "next/link";
+import { api } from "@/app/api/utils/api";
 
 export const CartItemComponent = ({ variableName }) => {
     const [total, setTotal] = useState(0);
     const [quantyProducts, setQuantyProducts] = useState(0);
-    
+
 
     useEffect(() => {
         const totalPrice = variableName.reduce((acc, item) => acc + item.unit_price * item.quanty, 0);
@@ -19,56 +19,29 @@ export const CartItemComponent = ({ variableName }) => {
         console.log("total:", totalPrice, "quanty:", totalOfProducts);
     }, [variableName]);
 
-    const AddMoreItemOnCart = async (id, action) => {
-        console.log("id do item no carrinho:", id);
-        const addMoreItemResponse = await fetch("http://localhost:3000/api/mysql/cart", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            }, body: JSON.stringify({
-                id: id,
-                action: "+"
-            })
-        })
-
-        if (addMoreItemResponse.ok) {
+    const AddMoreItemOnCart = async (id) => {
+        const addMoreItemResponse = await api.put("/cart", { id, action: "+" });
+        if (addMoreItemResponse.status === 201) {
             window.location.reload();
         }
     }
 
-    const RemoveAItemOfCart = async (id, action) => {
+    const RemoveAItemOfCart = async (id) => {
         console.log("id do item no carrinho:", id);
-        const addMoreItemResponse = await fetch("http://localhost:3000/api/mysql/cart", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            }, body: JSON.stringify({
-                id: id,
-                action: "-"
-            })
-        })
+        const addMoreItemResponse = await api.put("/cart", {id, action: "-"})
 
-        if (addMoreItemResponse.ok) {
+        if (addMoreItemResponse.status === 201) {
             window.location.reload();
-            console.log("produto adicionado ao carrinho");
-            console.log(addMoreItemResponse);
         }
     }
 
     const RemoveItemOfCart = async (id) => {
         console.log("id:", id);
-        const response = await fetch("http://localhost:3000/api/mysql/cart", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }, body: JSON.stringify({
-                id: id,
-            })
+        const response = await api.delete("/cart", { 
+            data: { id }
         });
-        if (response.ok) {
+        if (response.status === 200) {
             window.location.reload();
-            console.log("produto removido com sucesso");
-            console.log(response);
         }
     }
 
@@ -84,26 +57,23 @@ export const CartItemComponent = ({ variableName }) => {
                                     <h3 className="font-medium first-letter:uppercase">{it.product_name}</h3>
                                     <span>R$ {it.unit_price && it.unit_price.toFixed(2).replace(".", ",")}</span>
                                     <div className="flex items-center gap-3">
-                                        {it.quanty === 1
-                                            ? <button className="btnDefaultCart" 
-                                            onTouchStart={e => RemoveItemOfCart(it.id)} onClick={e => RemoveItemOfCart(it.id)}>
-                                                <FaTrash className="text-xs" />
-                                            </button>
-                                            : <button className="btnDefaultCart" 
-                                            onTouchStart={e => RemoveAItemOfCart(it.id)} onClick={e => RemoveAItemOfCart(it.id)}>
-                                                <MdExposureNeg1 />
-                                            </button>
-                                        }
+
+                                        <button className="btnDefaultCart"
+                                            onClick={e => it.quanty === 1 ? RemoveItemOfCart(it.id) : RemoveAItemOfCart(it.id)}>
+                                            <MdExposureNeg1 />
+                                        </button>
+
                                         <span>Quant. {it.quanty}</span>
                                         <button className="btnDefaultCart"
                                             onTouchStart={e => AddMoreItemOnCart(it.id)}
-                                            onClick={e => AddMoreItemOnCart(it.id)}><MdExposurePlus1 /></button>
+                                            onClick={e => AddMoreItemOnCart(it.id)}><MdExposurePlus1 />
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex flex-col items-start mt-5 fixed bottom-0 left-0 right-0 max-w-sm border-t-2 border-gray-500/25 mx-auto p-3 bg-verdeclaro">
                                 <h2 className="font-semibold flex gap-5">Total de ítens: R${total.toFixed(2).replace(".", ",")} <hr /> Quantidade: {quantyProducts}x</h2>
-                                
+
                                 <Link href={`/checkout`} className="btnDefault1 text-center w-full my-5">Fechar pedido</Link>
                             </div>
                         </span>
