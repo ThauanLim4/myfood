@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import { useState, useEffect } from "react";
 import { MdExposurePlus1, MdExposureNeg1 } from "react-icons/md";
 import Link from "next/link";
-import { api } from "@/app/api/utils/api";
+import { api } from "./../../app/api/utils/api";
 
 export const CartItemComponent = ({ variableName }) => {
     const [total, setTotal] = useState(0);
@@ -20,10 +20,15 @@ export const CartItemComponent = ({ variableName }) => {
     }, [variableName]);
 
     const AddMoreItemOnCart = async (id) => {
-        alert("Item adicionado ao carrinho");
-        const addMoreItemResponse = await api.put("/cart", { id, action: "+" });
-        if (addMoreItemResponse.status === 201) {
-            window.location.reload();
+        try {
+            console.log("Item adicionado ao carrinho");
+            const addMoreItemResponse = await api.put("/cart", { id, action: "+" });
+            console.log("requisição:", addMoreItemResponse);
+            if (addMoreItemResponse.status === 201) {
+                console.log("requisição bem sucedida");
+            }
+        } catch (error) {
+            console.log("algo deu errado", error);
         }
     }
 
