@@ -1,6 +1,6 @@
 export const fetchAllUsers = async () => {
     try {
-        const response = await fetch("/api/mysql/users");
+        const response = await fetch("/api/mysql/user/get");
         const result = await response.json();
         if (!response.ok) {
             console.log('erro ao buscar o banco de dados')

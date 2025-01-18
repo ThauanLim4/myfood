@@ -24,9 +24,8 @@ export const User = () => {
         const fetchUser = async () => {
             try {
                 const result = await fetchAllUsers();
-                const resultUser = result.find(
-                    (it) => it.authentication_key === tokenUser);
-                setUsersInfo(resultUser);
+                const resultUser = result.filter((it) => it.authentication_key === tokenUser);
+                setUsersInfo(resultUser[0]);
             } catch (erro) {
                 console.log("erro")
             }

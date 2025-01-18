@@ -23,8 +23,9 @@ export async function POST(request) {
             port: process.env.DB_PORT
         });
 
-        const [rows] = await connection.execute(`INSERT INTO user (user_name, user_email, user_password) VALUES (?, ?, ?)`, [name, email, password]);
-        await conection.end();
+        const [rows] = await connection.execute(
+            `INSERT INTO user (user_name, user_email, user_password) VALUES (?, ?, ?)`, [name, email, password]);
+        await connection.end();
 
         return NextResponse.json({ message: "Usuário criado com sucesso", success: true }, { status: 201 })
     } catch (erro) {

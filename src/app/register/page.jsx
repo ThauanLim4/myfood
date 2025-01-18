@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { HeaderDefault } from "@/components/ComponentsDefault/header";
@@ -10,6 +11,7 @@ import { MdPassword } from "react-icons/md";
 import { MdPerson } from "react-icons/md";
 import { InputText } from "@/components/ComponentsDefault/inputText";
 
+import { api } from "../api/utils/api";
 const Register = () => {
     const [users, setUsers] = useState([]);
 
@@ -17,31 +19,16 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const addUser = async (eve) => {
+        eve.preventDefault();
         try {
-            const response = await fetch('/api/mysql/user', {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    password
-                })
-            });
+            const response = await api.post("/user/create", { name, email, password });
             const data = await response.json();
             setUsers([...users, data]);
             console.log(data)
-            if (response.ok) {
-                console.log("usuário criado com sucesso");
+            if (response.status === 201) {
                 window.location.href = "/login";
-            } else {
-                console.log("Erro ao criar usuário");
-            }
-
-        } catch (erro) {
-
-        }
+            } 
+        } catch (erro) {}
     }
 
     return (
