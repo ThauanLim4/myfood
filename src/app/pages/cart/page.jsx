@@ -2,7 +2,7 @@
 import { HeaderDefault } from "@/components/ComponentsDefault/header";
 import { CartItemComponent } from "@/components/cart/cartItemComponent";
 import { useEffect, useState } from "react";
-import { fetchAllUsers, fetchAllItensInCart } from "../api/utils/utilitys";
+import { fetchAllUsers, fetchAllItensInCart } from "../../api/utils/utilitys";
 import empty_cart from "../../../public/empty_cart.svg";
 import Image from "next/image";
 

@@ -1,7 +1,7 @@
 "use client";
 import { HeaderDefault } from "@/components/ComponentsDefault/header";
 import { useEffect, useState } from "react";
-import { fetchAllFavorites } from "../api/utils/utilitys";
+import { fetchAllFavorites } from "../../api/utils/utilitys";
 import { WishListComponent } from "@/components/ComponentsDefault/wishListComponent";
 import empty from "../../../public/empty.svg"
 import Image from "next/image";

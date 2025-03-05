@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchAllUsers, fetchAllItensInCart, fetchAllStores } from "../api/utils/utilitys";
+import { fetchAllUsers, fetchAllItensInCart, fetchAllStores } from "../../api/utils/utilitys";
 import { CheckoutComponent } from "@/components/cart/checkoutComponent";
 import { CartItemComponent } from "@/components/cart/cartItemComponent";
 import { HeaderDefault } from "@/components/ComponentsDefault/header";

@@ -13,13 +13,12 @@ import { IoIosMenu } from "react-icons/io";
 export const MenuComponent = () => {
   return (
     <Sheet>
-      <SheetTrigger><IoIosMenu /></SheetTrigger>
+      <SheetTrigger><IoIosMenu className='text-2xl hover:text-verdeescuro' /></SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
+          <SheetTitle>Menu</SheetTitle>
           <SheetDescription>
-            This action cannot be undone. This will permanently delete your account
-            and remove your data from our servers.
+            Esta área ainda está em desenvolvimento...
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

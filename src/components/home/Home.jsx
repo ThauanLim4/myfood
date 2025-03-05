@@ -1,10 +1,9 @@
-"use client";
+import { TabsComponent } from "./Tabs";
 
-export const HomeInitial = () => {
-
+export const HomeComponent = () => {
     return (
         <>
-           <h1>Ola</h1>
+            <TabsComponent />
         </>
     )
 }

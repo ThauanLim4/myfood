@@ -11,7 +11,7 @@ import { MdPassword } from "react-icons/md";
 import { MdPerson } from "react-icons/md";
 import { InputText } from "@/components/ComponentsDefault/inputText";
 
-import { api } from "../api/utils/api";
+import { api } from "../../api/utils/api";
 const Register = () => {
     const [users, setUsers] = useState([]);
 

@@ -1,35 +1,25 @@
 import Link from "next/link";
-// import { SearchHeader } from "./Search";
-// import { Location } from "./location";
-// import { NavbarDesktopComponent } from "./NavbarDesktop";
-
-
 import "@/app/globals.css";
 import { MenuComponent } from "./Menu";
+import { SearchInputComponent } from "./SearchInput";
+import Logo from "@/../public/logo.png";
+import Image from "next/image";
 
 export const HeaderComponent = () => {
 
     return (
-        <header className="flex items-center p-3 gap-3 justify-between">
+        <header className="flex items-center p-3 gap-3 justify-between border-b border-black/15 bg-slate-200">
             <div>
-                <Link className="text-2xl self-center" href={"/"}><h1>MyFood</h1></Link>
+                <Link className="text-2xl self-center" href={"/"}>
+                    <h1 className="flex gap-1">MyFood <Image src={Logo} alt="logo" width={35} height={30} /></h1>
+                </Link>
             </div>
 
-            <div>
+            <div className="flex items-center gap-3">
+                <SearchInputComponent />
+
                 <MenuComponent />
             </div>
-
-            {/* <div className="block max-sm:hidden max-md:hidden w-full max-w-2xl">
-                <SearchHeader />
-            </div>
-
-            <div className="block items-center gap-3 max-sm:hidden max-md:hidden">
-                <NavbarDesktopComponent />
-            </div>
-
-            <div className="hidden max-sm:flex max-md:flexitems-center gap-3">
-                <Location />
-            </div> */}
         </header>
     )
 }

@@ -1,7 +1,7 @@
 "use client";
 import { HeaderDefault } from "@/components/ComponentsDefault/header";
 import { useEffect, useState } from "react";
-import { fetchAllUsers, fetchAllRequests, fetchAllRequestsItens } from "../api/utils/utilitys";
+import { fetchAllUsers, fetchAllRequests, fetchAllRequestsItens } from "../../api/utils/utilitys";
 import empty_requests from "../../../public/empty_requests.svg"
 import Image from "next/image";
 import { RequestItemComponent } from "@/components/ComponentsDefault/requestItemComponent";

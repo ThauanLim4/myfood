@@ -1,49 +1,11 @@
-"use client";
 import { HeaderComponent } from "@/components/header/Header";
-import { HomeInitial } from "@/components/home/Home";
-import { SearchInitial } from "@/components/search/Search";
-import { User } from "@/components/user/User";
-import { useEffect, useState } from "react";
-import { AiFillHome } from "react-icons/ai";
-import { FaSearch } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
-
+import { HomeComponent } from "@/components/home/Home";
 export default function Home() {
   return (
     <section>
       <HeaderComponent />
-      <HomeInitial />
+      
+      <HomeComponent />
     </section>
   )
 }
-
-// export const HomeMobile = () => {
-//   const itensClass = "flex flex-col-reverse justify-center items-center cursor-pointer";
-
-//   return (
-//     <div className="max-w-screen-lg mx-auto">
-
-
-//       {/* {selected === "search" && <section className="p-5 w-full h-full">
-//         <SearchInitial />
-//       </section>}
-
-//       {selected === "user" && <section className="p-5 w-full h-full">
-//         <User />
-//       </section>}
-
-
-
-//       <section className="hidden max-sm:block max-md:block ">
-//         <nav className="w-full p-3 bg-verdeclaro fixed bottom-0 border-t-2 border-gray-500/25">
-//           <ul className="flex justify-around">
-//             <li onClick={() => setItemSelected("home")} className={`${itensClass} ${selected === "home" ? "selected" : ""}`}>Home <AiFillHome /></li>
-//             <li onClick={() => setItemSelected("search")} className={`${itensClass} ${selected === "search" ? "selected" : ""}`}>Pesquisar <FaSearch /></li>
-//             <li onClick={() => setItemSelected("user")} className={`${itensClass} ${selected === "user" ? "selected" : ""}`}>Perfil <FaUser /></li>
-//           </ul>
-//         </nav>
-//       </section> */}
-//     </div>
-//   )
-
-// }
