@@ -8,7 +8,6 @@ import { CiLocationOn, CiLogout } from "react-icons/ci";
 import { RiAccountBoxLine } from "react-icons/ri";
 
 import { fetchAllUsers } from "@/app/api/utils/utilitys";
-import user from "../../../public/user.svg"
 import Link from "next/link";
 import Image from "next/image";
 
@@ -45,7 +44,7 @@ export const User = () => {
             <ul className="flex flex-col gap-5">
                 {userLogged ?
                     <div className="flex gap-5 items-center">
-                        <Image className="max-w-16" src={user} alt="imagem do usuário logado" />
+                        {/* <Image className="max-w-16" src={user} alt="imagem do usuário logado" /> */}
                         <div>
                             <h3 className="text-xl font-semibold">{usersInfos.user_name}</h3>
                             <p className="text-sm">{usersInfos.user_email}</p>
