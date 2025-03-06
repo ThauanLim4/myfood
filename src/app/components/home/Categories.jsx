@@ -28,7 +28,7 @@ export const CategoriesComponent = () => {
                                 <div key={index} className="hover:shadow-sombrainterna">
                                     <Link href={`categorias/${item.name.trim().toLocaleLowerCase()}`} className="grid grid-rows-0.7/0.3-rows items-center justify-center gap-3 bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 rounded-lg">
                                         <div className={`${itensCategoriesClass} rounded-b-full`}>
-                                            <img className="rounded-full" src={item.image} width={100} height={100} alt="" />
+                                            <img className="rounded-full min-w-28 min-h-28" src={item.image} width={100} height={100} alt="" />
                                         </div>
                                         <h3 className="font-light text-ellipsis hover:text-verdeescuro hover:cursor-pointer text-center">{item.name}</h3>
                                     </Link>

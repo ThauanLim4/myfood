@@ -13,33 +13,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
-  id             String  @id @default(uuid())
-  name           String
-  description    String
-  price          Decimal @db.Decimal(5, 2)
-  image          String
-  discontPorcent Int
-  establishment  String  @unique
-  Products       Store   @relation(fields: [id], references: [id])
-}
-
-model Store {
-  id        String    @id @default(uuid())
-  name      String
-  image     String
-  stars     Float
-  openAt    Float
-  closeAt   Float
-  openNow   Boolean
-  freight   Decimal?  @db.Decimal(5, 2)
-  Products  Product[]
-  category  category  @relation(fields: [id], references: [id])
-}
-
 model category {
-  id     String  @id @default(uuid())
-  name   String
-  image  String
-  Stores Store[]
+  id       String    @id @default(uuid())
+  name     String
+  image    String
+  products Product[]
 }
+
+model Product {
+  id             String   @id @default(uuid())
+  name           String
+  description    String?
+  price          Decimal  @db.Decimal(5, 2)
+  image          String
+  discontPorcent Int      @default(0)
+  categoryId     String
+  category       category @relation(fields: [categoryId], references: [id])
+}
+
+// model Store {
+//   id       String    @id @default(uuid())
+//   name     String
+//   image    String
+//   stars    Float
+//   openAt   Float
+//   closeAt  Float
+//   openNow  Boolean
+//   freight  Decimal?  @db.Decimal(5, 2)
+//   Products Product[]
+// }
