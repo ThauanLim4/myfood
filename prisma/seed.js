@@ -5,34 +5,14 @@ async function main() {
     try {
         const categories = await prisma.category.createMany({
             data: [
-                { name: "Bebidas", image: "https://asset.cloudinary.com/dhl67mauv/b1335c072366973005407435bbd71d0d" },
-                { name: "Kravick Lanches", image: "https://asset.cloudinary.com/dhl67mauv/9b2e73b55c08ecb77875d869b821e86c" },
-                { name: "Docearia Bernadete", image: "https://asset.cloudinary.com/dhl67mauv/62b8097c3f36fde48fae12fbbc818079" },
-                { name: "Pizzaria Italiana", image: "https://asset.cloudinary.com/dhl67mauv/959c0d935c1bd4a0a55174e7d404c174" },
-                { name: "Açai Delicia", image: "https://asset.cloudinary.com/dhl67mauv/959c0d935c1bd4a0a55174e7d404c174" },
+                { name: "Bebidas", image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734696091/images_zl8rdq.png" },
+                { name: "Kravick Lanches", image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734790769/Black_White_Bold_Simple_Co-Working_Space_Logo_e8lzqt.png" },
+                { name: "Docearia Bernadete", image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734790150/04-logo-DoceTok-Artesanato.jpg_ss6odv.webp" },
+                { name: "Pizzaria Italiana", image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734790150/pizzaria-italiana_okmglg.jpg" },
+                { name: "Açai Delicia", image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734790151/8003936_oth4fj.jpg" },
             ]
         });
 
-        const products = await prisma.product.createMany({
-            data: [
-                {
-                    name: "Coca-Cola 1L",
-                    description: "Coca-cola da garrafa de vidro de um litro, considerada a mais saborosa entre todas as bebidas",
-                    price: 10,
-                    image: "https://asset.cloudinary.com/dhl67mauv/d23101e41a0a8d8b8955ab91c9645be2",
-                    discontPorcent: 0,
-                    establishment: "Bebidaria Nacional"
-                },
-                {
-                    name: "Coca-cola 2L",
-                    description: "Coca-cola 2 litros, serve para até 4 pessoas",
-                    price: 10,
-                    image: "https://asset.cloudinary.com/dhl67mauv/d23101e41a0a8d8b8955ab91c9645be2",
-                    discontPorcent: 0,
-                    establishment: "Bebidaria Nacional"
-                }
-            ]
-        })
 
         const stores = await prisma.store.createMany({
             data: [
@@ -43,7 +23,8 @@ async function main() {
                     openAt: 12,
                     closeAt: 22,
                     openNow: null,
-                    freight: 3.50
+                    freight: 3.50,
+                    
                 }
             ]
         })

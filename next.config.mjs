@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    images: {
+        remotePatterns: [
+            {
+                hostname: "asset.cloudinary.com"
+            }
+        ]
+    },
     headers: () => [
         {
             source: '/api/:path*',

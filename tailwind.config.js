@@ -66,6 +66,9 @@ module.exports = {
   			'2-cols': '0.5fr 1fr',
   			'3-cols': '0.7fr 1fr 0.3fr'
   		},
+		gridTemplateRows: {
+			'0.7/0.3-rows': '0.7fr 0.3fr'
+		},
   		borderWidth: {
   			'3': '3px'
   		},

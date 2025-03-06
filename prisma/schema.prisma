@@ -25,16 +25,16 @@ model Product {
 }
 
 model Store {
-  id       String    @id @default(uuid())
-  name     String
-  image    String
-  stars    Float
-  openAt   Float
-  closeAt  Float
-  openNow  Boolean
-  freight  Decimal?  @db.Decimal(5, 2)
-  category category  @relation(fields: [id], references: [id])
-  Products Product[]
+  id        String    @id @default(uuid())
+  name      String
+  image     String
+  stars     Float
+  openAt    Float
+  closeAt   Float
+  openNow   Boolean
+  freight   Decimal?  @db.Decimal(5, 2)
+  Products  Product[]
+  category  category  @relation(fields: [id], references: [id])
 }
 
 model category {
