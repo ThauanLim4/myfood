@@ -2,11 +2,6 @@
 import "@/app/globals.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-import { FaArrowRight } from "react-icons/fa";
-import categories from "@/app/api/categories/route"
-import Image from "next/image";
-
 export const CategoriesComponent = () => {
     const itensCategoriesClass = "flex flex-col justify-center items-center text-center w-32 h-28";
     const [categoriesData, setCategoriesData] = useState([]);
