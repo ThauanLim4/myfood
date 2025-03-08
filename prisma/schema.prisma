@@ -27,8 +27,9 @@ model Product {
   price          Decimal  @db.Decimal(5, 2)
   image          String
   discontPorcent Int      @default(0)
+  productType    String?  @default("comida")
   categoryId     String
-  storeId        String   
+  storeId        String
   category       category @relation(fields: [categoryId], references: [id])
   store          Store    @relation(fields: [storeId], references: [id])
 }
@@ -40,7 +41,6 @@ model Store {
   stars    Float
   openAt   Float
   closeAt  Float
-  openNow  Boolean
   freight  Decimal?  @default(0) @db.Decimal(5, 2)
   Products Product[]
 }
