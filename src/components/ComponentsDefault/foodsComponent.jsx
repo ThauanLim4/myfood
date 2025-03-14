@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { CloseDefault } from "./header";
 import { useEffect, useState } from "react";
-import { fetchAllUsers, fetchAllStores } from "@/app/api/utils/utilitys";
-import axios from "axios";
 
 import { FaStoreAlt } from "react-icons/fa";
 export const FoodComponent = ({ variableName }) => {

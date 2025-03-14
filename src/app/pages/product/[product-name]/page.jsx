@@ -56,7 +56,7 @@ const ProductDetailsPage = () => {
                                     <div className='p-3'>
                                         <ProductInfosComponent productDetails={item} />
                                     </div>
-                                    <div className='p-3'>
+                                    <div className='p-3 border-b border-verdeescuro'>
                                         <StoreComponent storeDetails={storeDetails} />
                                     </div>
                                 </div>

@@ -45,29 +45,38 @@ async function main() {
         // })
 
         const stores = await prisma.store.update({
-            where: { id: '1bbb31d9-e3b4-4eee-a1d0-f84304f02c13' },
+            where: { id: '0f3d2f95-24c8-4fa5-82db-7a2056a62408' },
             data: {
                 Products: {
                     createMany: {
                         data: [
                             {
-                                name: "x-tudo completo",
-                                price: 19,
-                                description: "x-tudo completo com cobertura de queijo e croissants, perfeito para matar o que te mata, a fome",
-                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1741442958/x-tudo-brasileiro-tem-variedade-de-ingredientes-de-acordo-com-preferencias-regionais-aqui-versao-com-carne-bovina-tomato-salsicha-presunto-bacon-e-queijo-no-pao-1684938396547_v2_4x3-removebg-preview_mwxci3.png",
-                                discontPorcent: 7,
-                                productType: "lanche",
-                                categoryId: "8b7fd919-e47d-4b21-9050-89dda5ba47cd"
+                                name: "Cookie de chocolate",
+                                price: 3,
+                                description: "unidade cookie de chocolate é um delicado doce feito com açúcar, açai, açucar e chocolate",
+                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734613877/cookie_rkcqxk.png",
+                                discontPorcent: 0,
+                                productType: "doce",
+                                categoryId: "0f3d2f95-24c8-4fa5-82db-7a2056a62408"
 
                             },
                             {
-                                name: "x-egg",
-                                price: 12,
-                                description: "x-egg simples bastante saudável para você apreciar um belo hamburguer sem sair da dieta!",
+                                name: "bolo de chocolate granulado com detalhes",
+                                price: 78.90,
+                                description: "bolo de chocolate granulado com detalhes é um delicado doce feito com açúcar, açai, açucar, chocolate e granulado",
                                 image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1741347510/pngegg_10_ptflfq.png",
                                 discontPorcent: 0,
-                                productType: "lanche",
-                                categoryId: "8b7fd919-e47d-4b21-9050-89dda5ba47cd"
+                                productType: "doce",
+                                categoryId: "0f3d2f95-24c8-4fa5-82db-7a2056a62408"
+                            },
+                            {
+                                name: "bolo de chocolate granulado com detalhes",
+                                price: 78.90,
+                                description: "bolo de chocolate granulado com detalhes é um delicado doce feito com açúcar, açai, açucar, chocolate e granulado",
+                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1741347510/pngegg_10_ptflfq.png",
+                                discontPorcent: 0,
+                                productType: "doce",
+                                categoryId: "0f3d2f95-24c8-4fa5-82db-7a2056a62408"
                             },
                             
                         ]
