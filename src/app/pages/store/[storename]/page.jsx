@@ -1,10 +1,9 @@
 "use client";
 import '@/app/globals.css';
 import { useEffect, useState } from "react";
-import { FaStar, FaCircle } from "react-icons/fa";
 import { useSearchParams } from "next/navigation";
-import { FoodComponent } from '@/components/ComponentsDefault/foodsComponent';
 import { MenuStoreComponent } from './components/MenuStore';
+import { StoreInfosComponent } from './components/StoreInfos';
 
 const StoreDetailsPage = () => {
     const searchParams = useSearchParams();
@@ -40,33 +39,16 @@ const StoreDetailsPage = () => {
         fetchDataProductDetails();
     }, [productId]);
 
+
     return (
         <>
             <div className="max-w-screen-lg mx-auto">
                 {storeDetails.length > 0 ? (
                     <>
-                        {storeDetails.map((store, ind) => {
-                            return (
-                                <div key={ind} className="">
-                                    <div>
-                                        <img className="w-full max-h-36 object-cover" src={store.image} alt="" />
-                                    </div>
-                                    <div className="p-5 border-b-2 border-gray-500/25">
-                                        <div className="flex gap-3">
-                                            <img className="roundedFull" src={store.image} alt="" />
-                                            <div className="flex flex-col gap-1">
-                                                <h2 className="text-xl font-semibold flex gap-3">{store.name} </h2>
-                                                <span className="flex items-center gap-1">
-                                                    <FaStar className="text-yellow-300" />{store.stars} avaliação
-                                                </span>
-                                                <h3>{store.freight}</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
-                        }
+                        {/* Informações sobre a loja como o nome, foto, frete e outras. */}
+                        <StoreInfosComponent storeDetails={storeDetails} />
+
+                        {/* Menu da lojas, onde contém todos os produtos da loja */}
                         <MenuStoreComponent menuStore={productDetails} />
                     </>
                 ) : <></>}
