@@ -19,6 +19,7 @@ module.exports = {
 				cordopix: '#38BEB0',
 				cordodinheiro: '#C2E7C5',
 				cordocartao: '#ffc408',
+				branco: '#e3e3e3',
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
