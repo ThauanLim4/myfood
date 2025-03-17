@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { MenuStoreComponent } from './components/MenuStore';
 import { StoreInfosComponent } from './components/StoreInfos';
+import { OtherStoresComponent } from './components/otherStores';
 
 const StoreDetailsPage = () => {
     const searchParams = useSearchParams();
-    let productId = searchParams.get('storeid');
+    let storeId = searchParams.get('storeid');
     const [storeDetails, setStoreDetails] = useState([]);
     const [productDetails, setProductsDetails] = useState([]);
+    const [otherStores, setOtherStores] = useState([]);
 
     useEffect(() => {
-        if (!productId) {
-            console.error("No productId provided");
+        if (!storeId) {
+            console.error("No storeId provided");
             return;
         }
         const fetchDataProductDetails = async () => {
@@ -23,7 +25,7 @@ const StoreDetailsPage = () => {
                 const resultStores = await getStores.json();
                 const resultProducts = await getProducts.json();
                 if (resultStores) {
-                    const storeDetailsFiltered = resultStores.filter(store => store.id === productId);
+                    const storeDetailsFiltered = resultStores.filter(store => store.id === storeId);
                     setStoreDetails(storeDetailsFiltered);
                     console.log(storeDetailsFiltered);
                     if (storeDetailsFiltered) {
@@ -32,12 +34,17 @@ const StoreDetailsPage = () => {
                         console.log(resultProductsFiltered);
                     }
                 }
+
+                const otherStoresFilted = resultStores.filter(store => store.id !== storeId);
+                if (otherStoresFilted) {
+                    setOtherStores(otherStoresFilted)
+                };
             } catch (error) {
                 console.error(error);
             }
         }
         fetchDataProductDetails();
-    }, [productId]);
+    }, [storeId]);
 
 
     return (
@@ -52,6 +59,12 @@ const StoreDetailsPage = () => {
                         <MenuStoreComponent menuStore={productDetails} />
                     </>
                 ) : <></>}
+            </div>
+
+            <div>
+                <h2>Outras Lojas</h2>
+
+                {otherStores.length > 0 ? <OtherStoresComponent otherStores={otherStores}  /> : <></> }
             </div>
         </>
     )

@@ -2,6 +2,7 @@ import { convertPrice } from '@/helpers/convertPrice';
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import { TbPointFilled } from 'react-icons/tb';
+import { FaTruck } from "react-icons/fa";
 
 export const StoreInfosComponent = ({ storeDetails }) => {
 
@@ -22,7 +23,7 @@ export const StoreInfosComponent = ({ storeDetails }) => {
         <>
             {storeDetails.map((store, ind) => {
                 return (
-                    <div key={ind} className="">
+                    <div key={ind}>
                         <div>
                             <img className="w-full max-h-36 object-cover" src={store.image} alt="" />
                         </div>
@@ -33,9 +34,11 @@ export const StoreInfosComponent = ({ storeDetails }) => {
                                     <h2 className="text-xl font-semibold flex items-center gap-3">{store.name}
                                         {availbleTimeStore(store.openAt, store.closeAt)} </h2>
                                     <span className="flex items-center gap-1">
-                                        <FaStar className="text-yellow-300" />{store.stars} avaliação
+                                        <FaStar className="text-amarelo" />{store.stars} avaliação
                                     </span>
-                                    <h3>Frete {convertPrice(store.freight)}</h3>
+                                    <h3 className='flex items-center gap-1'>
+                                        <FaTruck className='text-verdeescuro' /> Frete {convertPrice(store.freight)}
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -43,6 +46,7 @@ export const StoreInfosComponent = ({ storeDetails }) => {
                 )
             })
             }
+            <h2 className='text-2xl p-3 font-semibold'>{storeDetails[0]?.name} menu</h2>
         </>
     )
 }
