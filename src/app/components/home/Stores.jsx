@@ -19,6 +19,7 @@ export const StoresComponent = () => {
     return (
         <div>
             <div className="text-start">
+                <h2 className="flex text-xl font-semibold p-3">Lojas</h2>
                 <div className="flex items-center gap-3 w-full h-56 max-sm:overflow-x-scroll max-md:overflow-x-scroll max-lg:overflow-x-scroll">
                     <Swiper slidesPerView={2} spaceBetween={10} 
                     breakpoints={

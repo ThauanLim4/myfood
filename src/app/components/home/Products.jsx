@@ -20,17 +20,19 @@ export const ProductsComponent = () => {
 
     return (
         <div>
+            <h2 className="flex text-xl font-semibold p-3">Produtos</h2>
+
             {productsData
-                ? <div className="mt-10 mb-16">
+                ? <div className="mb-16">
                     <div className="grid grid-cols-3 max-w-screen-lg mx-auto max-sm:grid-cols-1 max-md:grid-cols-2 gap-5 p-3">
                         {
                             productsData.map((item, ind) => {
                                 return (
-                                    <div key={ind} className="grid grid-cols-0.3/0.7-cols max-sm:border-b-2 gap-5 hover:shadow-sombra w-full h-full max-w-96 min-h-32 max-h-32 mx-auto border border-verdeescuro rounded-lg transition-all duration-300 overflow-hidden">
-                                        <div className="w-full h-full min-h-32 max-h-32 flex self-center bg-verdeclaro">
+                                    <div key={ind} className="grid grid-cols-0.3/0.7-cols max-sm:border-b-2 gap-5 hover:shadow-sombra w-full h-full max-w-96 min-h-28 max-h-28 mx-auto border border-verdeescuro rounded-lg transition-all duration-300 overflow-hidden">
+                                        <div className="w-full h-full min-h-28 max-h-28 flex self-center bg-verdeclaro">
                                             <img className="w-full h-full object-contain flex self-center p-1" src={item.image} alt={`foto de ${item.category}, ${item.name}`} />
                                         </div>
-                                        <div className="flex flex-col w-full justify-center gap-1">
+                                        <div className="flex flex-col w-full justify-start gap-1">
                                             <Link href={`/pages/product/${item.name.toLowerCase().replace(/\s+/g, "-")}?prodid=${item.id}`} className="hover:cursor-pointer">
                                                 <h3 className="text-black first-letter:uppercase">{item.name}</h3>
                                             </Link>
