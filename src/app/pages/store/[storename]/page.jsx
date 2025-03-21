@@ -28,17 +28,16 @@ const StoreDetailsPage = () => {
                 if (resultStores) {
                     const storeDetailsFiltered = resultStores.filter(store => store.id === storeId);
                     setStoreDetails(storeDetailsFiltered);
-                    console.log(storeDetailsFiltered);
                     if (storeDetailsFiltered) {
                         const resultProductsFiltered = resultProducts.filter(product => product.storeId === storeDetailsFiltered[0].id);
                         setProductsDetails(resultProductsFiltered);
-                        console.log(resultProductsFiltered);
                     }
                 }
 
                 const otherStoresFilted = resultStores.filter(store => store.id !== storeId);
                 if (otherStoresFilted) {
-                    setOtherStores(otherStoresFilted)
+                    setOtherStores(otherStoresFilted);
+                    console.log(otherStoresFilted);
                 };
             } catch (error) {
                 console.error(error);

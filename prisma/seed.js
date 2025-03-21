@@ -51,34 +51,45 @@ async function main() {
                     createMany: {
                         data: [
                             {
-                                name: "Cookie de chocolate",
-                                price: 3,
-                                description: "unidade cookie de chocolate é um delicado doce feito com açúcar, açai, açucar e chocolate",
-                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734613877/cookie_rkcqxk.png",
-                                discontPorcent: 0,
+                                name: "Combo de Rosquinhas",
+                                price: 39.90,
+                                description: "Combo de rosquinhas com 6 unidades de vários sabores e rechados com cobertura dos seus respectivos sabores",
+                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1734613877/donuts_xtzmqw.png",
+                                discontPorcent: 12,
                                 productType: "doce",
-                                categoryId: "0f3d2f95-24c8-4fa5-82db-7a2056a62408"
+                                categoryId: "aeb2e809-2aea-4947-a8b1-2d055e29711c"
 
                             },
                             {
-                                name: "bolo de chocolate granulado com detalhes",
-                                price: 78.90,
-                                description: "bolo de chocolate granulado com detalhes é um delicado doce feito com açúcar, açai, açucar, chocolate e granulado",
-                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1741347510/pngegg_10_ptflfq.png",
+                                name: "Rosquinha com cobertura de chocolate",
+                                price: 4.90,
+                                description: "Deliciosa rosquinha com cobertura de chocolate",
+                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1742562264/pngegg_13_bvojfl.png",
                                 discontPorcent: 0,
                                 productType: "doce",
-                                categoryId: "0f3d2f95-24c8-4fa5-82db-7a2056a62408"
+                                categoryId: "aeb2e809-2aea-4947-a8b1-2d055e29711c"
+
                             },
                             {
-                                name: "bolo de chocolate granulado com detalhes",
-                                price: 78.90,
-                                description: "bolo de chocolate granulado com detalhes é um delicado doce feito com açúcar, açai, açucar, chocolate e granulado",
-                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1741347510/pngegg_10_ptflfq.png",
+                                name: "Rosquinha com cobertura de chocolate branco",
+                                price: 5.90,
+                                description: "Deliciosa rosquinha com cobertura de chocolate branco e com fios de chocolate",
+                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1742562264/pngegg_13_bvojfl.png",
                                 discontPorcent: 0,
                                 productType: "doce",
-                                categoryId: "0f3d2f95-24c8-4fa5-82db-7a2056a62408"
+                                categoryId: "aeb2e809-2aea-4947-a8b1-2d055e29711c"
+
                             },
-                            
+                            {
+                                name: "Fatia de bolo",
+                                price: 4.90,
+                                description: "Deliciosa fatia de bolo com cobertura de chocolate",
+                                image: "https://res.cloudinary.com/dhl67mauv/image/upload/v1742562263/pngegg_15_fspxeq.png",
+                                discontPorcent: 0,
+                                productType: "doce",
+                                categoryId: "aeb2e809-2aea-4947-a8b1-2d055e29711c"
+
+                            },
                         ]
                     }
                 }

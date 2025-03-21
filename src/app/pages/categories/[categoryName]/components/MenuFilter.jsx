@@ -20,7 +20,7 @@ export const MenuFilterComponent = () => {
                         filtrar <IoIosArrowDown />
                     </p>
                 </DialogTrigger>
-                <DialogContent className="bg-verdeclaro">
+                <DialogContent className="bg-branco w-11/12 rounded-lg">
                     <DialogHeader>
                         <DialogTitle>Filtros</DialogTitle>
                         <DialogDescription>
