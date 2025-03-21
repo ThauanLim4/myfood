@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { api } from "@/app/api/utils/api";
 
 export const StoreComponent = ({ variableName }) => {
     const [userToken, setUserToken] = useState("");
