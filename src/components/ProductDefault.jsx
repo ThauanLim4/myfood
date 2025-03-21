@@ -3,10 +3,10 @@ import { convertPrice } from '@/helpers/convertPrice';
 import Link from 'next/link';
 import React from 'react';
 
-export const ProductDefaultComponent = ({dataOfProducts, nameSectin}) => {
+export const ProductDefaultComponent = ({dataOfProducts, nameSection}) => {
     return (
         <div>
-            <h2 className="flex text-xl font-semibold p-3">Produtos</h2>
+            <h2 className="flex text-xl font-semibold p-3 first-letter:uppercase text-verdeescuro">{nameSection}</h2>
 
             {dataOfProducts
                 ? <div className="mb-16">
