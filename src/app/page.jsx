@@ -7,10 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { TabsComponent } from "./components/home/Tabs";
-import { SearchTabComponent } from "./components/search/Search";
-import { UserTabComponent } from "./components/user/User";
-import { createContext, useContext, useState } from "react";
+
 export default function Home() {
 
   return (
@@ -18,10 +15,6 @@ export default function Home() {
       <HeaderComponent />
 
       <HomeComponent />
-
-      <SearchTabComponent />
-
-      <UserTabComponent />
     </section>
   )
 }

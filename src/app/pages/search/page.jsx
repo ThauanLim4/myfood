@@ -1,42 +1,45 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchAllFoods } from "@/app/api/utils/utilitys";
-import { FoodComponentForSearch } from "@/components/ComponentsDefault/foodsComponent";
-import { HeaderDefault } from "@/components/ComponentsDefault/header";
+import { useSearchParams } from "next/navigation";
+import { HeaderNavigation } from "@/components/HeaderNavigation";
+import { ProductDefaultComponent } from "@/components/ProductDefault";
 const SearchPage = () => {
-    const [resultSearch, setResultSearch] = useState([]);
-    const [CurrentLocation, setCurrentLocation] = useState("");
+    const [productsResultSearch, setProductsResultSearch] = useState([]);
+    const getParams = useSearchParams();
+    const searchResult = getParams.get("result");
+    console.log(searchResult);
 
     useEffect(() => {
-        const urlResult = window.location.href.split('?')[1].split('=')[1];
-        setCurrentLocation(urlResult);
-        const fetchResult = async () => {
+        if (!searchResult) {
+            console.error("No search result provided");
+            return;
+        }
+        const fetchDataProducts = async () => {
             try {
-                const result = await fetchAllFoods();
-                const resultFilted = result.filter(
-                    e => e.food.toLocaleLowerCase().includes(urlResult.toLocaleLowerCase()));
-                    console.log(resultFilted)
-                if(resultFilted.length < 1){
-                    return setMensage("nenhum ítem foi encontrado");
+                const response = await fetch("/api/products");
+                const resultProducts = await response.json();
+                console.log(resultProducts);
+                if (resultProducts) {
+                    const resultProductsFiltered = resultProducts.filter(product => product.name.toLowerCase().includes(searchResult.toLowerCase()));
+                    console.log(resultProductsFiltered);
+                    setProductsResultSearch(resultProductsFiltered);
                 }
-                setResultSearch(resultFilted);
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         }
-
-        fetchResult();
-    }, [])
+        fetchDataProducts();
+    }, [searchResult])
 
     return (
         <div className="max-w-screen-lg mx-auto">
-            <HeaderDefault nameLocation={"Busca"} />
-            <h1 className="text-xl font-semibold mt-5 px-5">Resultados para  
-                <span className="text-verdeescuro">{" " + CurrentLocation}</span>
-            </h1>
-            {resultSearch && FoodComponentForSearch({ variableName: resultSearch })}
+            <HeaderNavigation location={"Busca"} />
+            {productsResultSearch.length > 0
+                ? <ProductDefaultComponent
+                    dataOfProducts={productsResultSearch} nameSection={`Resultados Para ${searchResult}`} />
+                : <></>}
         </div>
-    )    
+    )
 }
 
 export default SearchPage;
